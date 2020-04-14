@@ -1,10 +1,16 @@
-wd: /data/exploratory/Users/jeff.alvarez/informatics_RNAseq_pipeline
-fastqs: data/samples
+ID: 2020_04_13_test
+Title: "2020-04-13 Test"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
+fastqs: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples
 samples:
-        untreated: data/samples/untreated_1.fastq.gz
-        dex: data/samples/dex_1.fastq.gz
-        alb: data/samples/alb_1.fastq.gz
-        alb_dex: data/samples/alb_dex_1.fastq.gz
-ref: Human_B37.3
-fa: data/Human_B37.3_chr1.fasta
-gtf: data/Human_B37.3_chr1.gtf
+        untreated: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/untreated_1.fastq.gz
+        dex: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/dex_1.fastq.gz
+        alb: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/alb_1.fastq.gz
+        alb_dex: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/alb_dex_1.fastq.gz
+ref:
+        fa: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.fasta
+        gtf: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.gtf
+        build: Human_B37.3
