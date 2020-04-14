@@ -1,4 +1,4 @@
-wd: /data/exploratory/Users/jeff.alvarez/informatics_RNAseq_pipeline
+wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
 fastqs: data/samples
 samples:
         untreated: data/samples/untreated_1.fastq.gz
