@@ -3,16 +3,19 @@ import glob, os
 configfile: "config.yaml"
 
 samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
-print(samples)
+pairs = [1, 2]
 
 rule all:
 	input:
 		expand('{wd}/outs/STAR_index/{build}', wd = config['wd'], build = config['ref']['build']),
 		expand('outs/STAR/{sample}_pass1/SJ.out.tab', sample = samples),
 		expand('outs/STAR/{sample}_pass1/{sample}_Pass1SJ.filtered.tab', sample = samples),
-#		'outs/STAR/bams',
 		expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam', sample = samples),
-		'outs/counts/Pipeline.Counts.tsv'
+		'outs/counts/Pipeline.Counts.tsv',
+		'outs/qc/multiqc_report.html'
+
+### include rules ###
+include: 'workflow/rules/qc.smk'
 
 rule star_index:
 	input:
