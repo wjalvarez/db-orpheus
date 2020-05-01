@@ -1,6 +1,6 @@
 import glob, os
 
-configfile: "config.yaml"
+configfile: "configB16.yaml"
 
 samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
 pairs = [1, 2]
