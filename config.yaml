@@ -1,7 +1,7 @@
 wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
 fastqs: data/samples
-ID: 2020_04_13_test
-Title: "2020-04-13 Test"
+ID: 2020_04_30_test
+Title: "2020-04-30 Test"
 HPC_ID: jeff.alvarez
 Contact_name: "Jeff Alvarez"
 Organism: "Human"
