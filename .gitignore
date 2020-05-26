@@ -1,3 +1,4 @@
 outs/*
 .snakemake
 Log.out
+logs/*
