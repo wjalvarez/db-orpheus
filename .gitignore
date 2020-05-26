@@ -2,3 +2,5 @@ outs/*
 .snakemake
 Log.out
 logs/*
+.nfs*
+workflow/rules/.nfs*
