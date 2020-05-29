@@ -14,14 +14,10 @@ rule all:
 		expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam', sample = samples),
 		'outs/counts/Pipeline.Counts.tsv',
 		'outs/qc/multiqc_report.html',
-#		expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam', sample = samples),
-#		expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.markedAligned.bam', sample = samples),
-#		expand('outs/split/{sample}.bam', sample = samples),
-#		expand('outs/recal/{sample}.bam', sample = samples),
-#		expand('outs/calls/{sample}.g.vcf.gz', sample = samples),
-		"outs/calls/all.vcf.gz"
+		"outs/calls/all.filtered.vcf.gz"
 
 ### include rules ###
+include: 'workflow/rules/align.smk'
 include: 'workflow/rules/qc.smk'
 include: 'workflow/rules/call.smk'
 

@@ -2,7 +2,7 @@ rule replace_rg:
 	input:
 		'outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam'
 	output:
-		"outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam"
+		temp("outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam")
 	log:
 		"logs/picard/replace_rg/{sample}.log"
 	params:
@@ -35,7 +35,7 @@ rule split_n_cigar_reads:
 	log:
 		"logs/gatk/splitNCIGARreads/{sample}.log"
 	params:
-		extra = "",
+		extra = "-rf ReassignOneMappingQuality -RMQF 255 -RMQT 60 -U ALLOW_N_CIGAR_READS",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/splitncigarreads"
@@ -66,7 +66,7 @@ rule haplotype_caller:
 	threads:
 		4
 	params:
-		extra = "-L 19",
+		extra = "-L 19 -dontUseSoftClippedBases -stand_call_conf 20.0",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/haplotypecaller"
@@ -98,3 +98,18 @@ rule genotype_gvcfs:
 		java_opts = "",
 	wrapper:
 		"0.58.0/bio/gatk/genotypegvcfs"
+
+rule gatk_filter:
+	input:
+		vcf = "outs/calls/all.vcf.gz",
+		ref = config["ref"]["fa"],
+	output:
+		vcf = "outs/calls/all.filtered.vcf.gz"
+	log:
+		"logs/gatk/filter/snvs.log"
+	params:
+		filters = {"FS": "FS > 30.0", "QD": "QD < 2.0"},
+		extra = "-window 35 -cluster 3",
+		java_opts = "",
+	wrapper:
+		"0.59.1/bio/gatk/variantfiltration"

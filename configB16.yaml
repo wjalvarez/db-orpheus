@@ -1,5 +1,5 @@
 ID: 2020_04_13_B16
-Title: "2020-04-13 B16"
+Title: "2020-04-13-B16"
 HPC_ID:  jeff.alvarez
 Contact_Name: "Jeff Alvarez"
 Organism: "Mouse"
@@ -17,4 +17,4 @@ samples:
 ref:
         fa: /data/exploratory/Users/jeff.alvarez/pipeline_ins/Omicsoft.Mouse.B38.fasta
         gtf: /data/exploratory/Users/jeff.alvarez/pipeline_ins/Omicsoft.Mouse.B38.Ensembl.R78.gtf
-        build: Mouse.B38
+        build: "Mouse.B38"
