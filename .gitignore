@@ -1,4 +1,6 @@
+.Snakefile.swp
 outs/*
+logs/*
 .snakemake
 Log.out
 logs/*

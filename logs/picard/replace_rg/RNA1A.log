@@ -1,0 +1,219 @@
+INFO	2020-05-19 19:01:32	AddOrReplaceReadGroups	
+
+********** NOTE: Picard's command line syntax is changing.
+**********
+********** For more information, please see:
+********** https://github.com/broadinstitute/picard/wiki/Command-Line-Syntax-Transition-For-Users-(Pre-Transition)
+**********
+********** The command line looks like this in the new syntax:
+**********
+**********    AddOrReplaceReadGroups -RGID RNA1A -RGLB RNA1A -RGPL RNA1A -RGPU RNA1A -RGSM RNA1A -VALIDATION_STRINGENCY LENIENT -I outs/STAR/bams/RNA1A.Aligned.sortedByCoord.out.bam -O outs/STAR/bams/RNA1A.Aligned.sortedByCoord.out.rgAligned.bam
+**********
+
+
+19:01:33.160 INFO  NativeLibraryLoader - Loading libgkl_compression.so from jar:file:/data/exploratory/Users/jeff.alvarez/omics-pipeline/.snakemake/conda/fbcb7705/share/picard-2.22.1-0/picard.jar!/com/intel/gkl/native/libgkl_compression.so
+[Tue May 19 19:01:33 EDT 2020] AddOrReplaceReadGroups INPUT=outs/STAR/bams/RNA1A.Aligned.sortedByCoord.out.bam OUTPUT=outs/STAR/bams/RNA1A.Aligned.sortedByCoord.out.rgAligned.bam RGID=RNA1A RGLB=RNA1A RGPL=RNA1A RGPU=RNA1A RGSM=RNA1A VALIDATION_STRINGENCY=LENIENT    VERBOSITY=INFO QUIET=false COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json USE_JDK_DEFLATER=false USE_JDK_INFLATER=false
+[Tue May 19 19:01:33 EDT 2020] Executing as jeff.alvarez@BOS-RDS-P009.agios.local on Linux 4.15.0-99-generic amd64; OpenJDK 64-Bit Server VM 11.0.1-internal+0-adhoc..src; Deflater: Intel; Inflater: Intel; Provider GCS is not available; Picard version: 2.22.1
+Ignoring SAM validation error: ERROR::HEADER_RECORD_MISSING_REQUIRED_TAG:File /data/exploratory/Users/jeff.alvarez/omics-pipeline/outs/STAR/bams/RNA1A.Aligned.sortedByCoord.out.bam, Error parsing SAM header. @RG line missing SM tag. Line:
+@RG	ID:RNA1A
+INFO	2020-05-19 19:01:33	AddOrReplaceReadGroups	Created read-group ID=RNA1A PL=RNA1A LB=RNA1A SM=RNA1A
+
+INFO	2020-05-19 19:01:46	AddOrReplaceReadGroups	Processed     1,000,000 records.  Elapsed time: 00:00:13s.  Time for last 1,000,000:   13s.  Last read position: 1:24,613,607
+INFO	2020-05-19 19:01:57	AddOrReplaceReadGroups	Processed     2,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:   10s.  Last read position: 1:34,814,055
+INFO	2020-05-19 19:02:09	AddOrReplaceReadGroups	Processed     3,000,000 records.  Elapsed time: 00:00:36s.  Time for last 1,000,000:   12s.  Last read position: 1:53,348,059
+INFO	2020-05-19 19:02:20	AddOrReplaceReadGroups	Processed     4,000,000 records.  Elapsed time: 00:00:47s.  Time for last 1,000,000:   11s.  Last read position: 1:62,745,389
+INFO	2020-05-19 19:02:32	AddOrReplaceReadGroups	Processed     5,000,000 records.  Elapsed time: 00:00:59s.  Time for last 1,000,000:   11s.  Last read position: 1:78,454,819
+INFO	2020-05-19 19:02:45	AddOrReplaceReadGroups	Processed     6,000,000 records.  Elapsed time: 00:01:12s.  Time for last 1,000,000:   13s.  Last read position: 1:91,285,398
+INFO	2020-05-19 19:02:57	AddOrReplaceReadGroups	Processed     7,000,000 records.  Elapsed time: 00:01:23s.  Time for last 1,000,000:   11s.  Last read position: 1:125,416,327
+INFO	2020-05-19 19:03:10	AddOrReplaceReadGroups	Processed     8,000,000 records.  Elapsed time: 00:01:37s.  Time for last 1,000,000:   13s.  Last read position: 1:136,161,496
+INFO	2020-05-19 19:03:22	AddOrReplaceReadGroups	Processed     9,000,000 records.  Elapsed time: 00:01:49s.  Time for last 1,000,000:   11s.  Last read position: 1:161,725,856
+INFO	2020-05-19 19:03:33	AddOrReplaceReadGroups	Processed    10,000,000 records.  Elapsed time: 00:02:00s.  Time for last 1,000,000:   11s.  Last read position: 1:178,330,332
+INFO	2020-05-19 19:03:48	AddOrReplaceReadGroups	Processed    11,000,000 records.  Elapsed time: 00:02:14s.  Time for last 1,000,000:   14s.  Last read position: 1:190,945,399
+INFO	2020-05-19 19:03:59	AddOrReplaceReadGroups	Processed    12,000,000 records.  Elapsed time: 00:02:26s.  Time for last 1,000,000:   11s.  Last read position: 10:23,785,659
+INFO	2020-05-19 19:04:11	AddOrReplaceReadGroups	Processed    13,000,000 records.  Elapsed time: 00:02:37s.  Time for last 1,000,000:   11s.  Last read position: 10:57,524,020
+INFO	2020-05-19 19:04:25	AddOrReplaceReadGroups	Processed    14,000,000 records.  Elapsed time: 00:02:52s.  Time for last 1,000,000:   14s.  Last read position: 10:76,369,933
+INFO	2020-05-19 19:04:37	AddOrReplaceReadGroups	Processed    15,000,000 records.  Elapsed time: 00:03:03s.  Time for last 1,000,000:   11s.  Last read position: 10:80,900,663
+INFO	2020-05-19 19:04:48	AddOrReplaceReadGroups	Processed    16,000,000 records.  Elapsed time: 00:03:15s.  Time for last 1,000,000:   11s.  Last read position: 10:83,604,054
+INFO	2020-05-19 19:05:00	AddOrReplaceReadGroups	Processed    17,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:   11s.  Last read position: 10:97,914,603
+INFO	2020-05-19 19:05:12	AddOrReplaceReadGroups	Processed    18,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:   11s.  Last read position: 10:127,300,548
+INFO	2020-05-19 19:05:23	AddOrReplaceReadGroups	Processed    19,000,000 records.  Elapsed time: 00:03:49s.  Time for last 1,000,000:   11s.  Last read position: 10:128,714,097
+INFO	2020-05-19 19:05:34	AddOrReplaceReadGroups	Processed    20,000,000 records.  Elapsed time: 00:04:01s.  Time for last 1,000,000:   11s.  Last read position: 11:4,487,812
+INFO	2020-05-19 19:05:45	AddOrReplaceReadGroups	Processed    21,000,000 records.  Elapsed time: 00:04:12s.  Time for last 1,000,000:   11s.  Last read position: 11:17,198,926
+INFO	2020-05-19 19:05:57	AddOrReplaceReadGroups	Processed    22,000,000 records.  Elapsed time: 00:04:23s.  Time for last 1,000,000:   11s.  Last read position: 11:32,909,661
+INFO	2020-05-19 19:06:08	AddOrReplaceReadGroups	Processed    23,000,000 records.  Elapsed time: 00:04:35s.  Time for last 1,000,000:   11s.  Last read position: 11:50,202,822
+INFO	2020-05-19 19:06:19	AddOrReplaceReadGroups	Processed    24,000,000 records.  Elapsed time: 00:04:46s.  Time for last 1,000,000:   10s.  Last read position: 11:52,242,633
+INFO	2020-05-19 19:06:31	AddOrReplaceReadGroups	Processed    25,000,000 records.  Elapsed time: 00:04:58s.  Time for last 1,000,000:   11s.  Last read position: 11:59,211,946
+INFO	2020-05-19 19:06:42	AddOrReplaceReadGroups	Processed    26,000,000 records.  Elapsed time: 00:05:08s.  Time for last 1,000,000:   10s.  Last read position: 11:62,552,891
+INFO	2020-05-19 19:06:53	AddOrReplaceReadGroups	Processed    27,000,000 records.  Elapsed time: 00:05:20s.  Time for last 1,000,000:   11s.  Last read position: 11:70,982,220
+INFO	2020-05-19 19:07:05	AddOrReplaceReadGroups	Processed    28,000,000 records.  Elapsed time: 00:05:32s.  Time for last 1,000,000:   11s.  Last read position: 11:77,537,209
+INFO	2020-05-19 19:07:16	AddOrReplaceReadGroups	Processed    29,000,000 records.  Elapsed time: 00:05:43s.  Time for last 1,000,000:   11s.  Last read position: 11:86,157,754
+INFO	2020-05-19 19:07:27	AddOrReplaceReadGroups	Processed    30,000,000 records.  Elapsed time: 00:05:54s.  Time for last 1,000,000:   11s.  Last read position: 11:94,037,416
+INFO	2020-05-19 19:07:39	AddOrReplaceReadGroups	Processed    31,000,000 records.  Elapsed time: 00:06:06s.  Time for last 1,000,000:   12s.  Last read position: 11:98,993,852
+INFO	2020-05-19 19:07:50	AddOrReplaceReadGroups	Processed    32,000,000 records.  Elapsed time: 00:06:17s.  Time for last 1,000,000:   11s.  Last read position: 11:101,641,824
+INFO	2020-05-19 19:08:02	AddOrReplaceReadGroups	Processed    33,000,000 records.  Elapsed time: 00:06:28s.  Time for last 1,000,000:   11s.  Last read position: 11:106,990,803
+INFO	2020-05-19 19:08:14	AddOrReplaceReadGroups	Processed    34,000,000 records.  Elapsed time: 00:06:41s.  Time for last 1,000,000:   12s.  Last read position: 11:116,850,118
+INFO	2020-05-19 19:08:26	AddOrReplaceReadGroups	Processed    35,000,000 records.  Elapsed time: 00:06:53s.  Time for last 1,000,000:   11s.  Last read position: 11:120,463,949
+INFO	2020-05-19 19:08:37	AddOrReplaceReadGroups	Processed    36,000,000 records.  Elapsed time: 00:07:04s.  Time for last 1,000,000:   11s.  Last read position: 12:3,309,508
+INFO	2020-05-19 19:08:50	AddOrReplaceReadGroups	Processed    37,000,000 records.  Elapsed time: 00:07:16s.  Time for last 1,000,000:   12s.  Last read position: 12:21,398,260
+INFO	2020-05-19 19:09:01	AddOrReplaceReadGroups	Processed    38,000,000 records.  Elapsed time: 00:07:28s.  Time for last 1,000,000:   11s.  Last read position: 12:54,746,429
+INFO	2020-05-19 19:09:12	AddOrReplaceReadGroups	Processed    39,000,000 records.  Elapsed time: 00:07:39s.  Time for last 1,000,000:   10s.  Last read position: 12:69,159,309
+INFO	2020-05-19 19:09:23	AddOrReplaceReadGroups	Processed    40,000,000 records.  Elapsed time: 00:07:50s.  Time for last 1,000,000:   11s.  Last read position: 12:69,159,350
+INFO	2020-05-19 19:09:34	AddOrReplaceReadGroups	Processed    41,000,000 records.  Elapsed time: 00:08:00s.  Time for last 1,000,000:   10s.  Last read position: 12:69,159,375
+INFO	2020-05-19 19:09:44	AddOrReplaceReadGroups	Processed    42,000,000 records.  Elapsed time: 00:08:11s.  Time for last 1,000,000:   10s.  Last read position: 12:69,159,412
+INFO	2020-05-19 19:09:55	AddOrReplaceReadGroups	Processed    43,000,000 records.  Elapsed time: 00:08:22s.  Time for last 1,000,000:   10s.  Last read position: 12:69,159,466
+INFO	2020-05-19 19:10:06	AddOrReplaceReadGroups	Processed    44,000,000 records.  Elapsed time: 00:08:33s.  Time for last 1,000,000:   10s.  Last read position: 12:69,159,484
+INFO	2020-05-19 19:10:17	AddOrReplaceReadGroups	Processed    45,000,000 records.  Elapsed time: 00:08:43s.  Time for last 1,000,000:   10s.  Last read position: 12:69,361,209
+INFO	2020-05-19 19:10:28	AddOrReplaceReadGroups	Processed    46,000,000 records.  Elapsed time: 00:08:55s.  Time for last 1,000,000:   11s.  Last read position: 12:69,361,244
+INFO	2020-05-19 19:10:39	AddOrReplaceReadGroups	Processed    47,000,000 records.  Elapsed time: 00:09:06s.  Time for last 1,000,000:   10s.  Last read position: 12:69,361,293
+INFO	2020-05-19 19:10:49	AddOrReplaceReadGroups	Processed    48,000,000 records.  Elapsed time: 00:09:16s.  Time for last 1,000,000:   10s.  Last read position: 12:69,361,320
+INFO	2020-05-19 19:11:01	AddOrReplaceReadGroups	Processed    49,000,000 records.  Elapsed time: 00:09:28s.  Time for last 1,000,000:   12s.  Last read position: 12:69,361,366
+INFO	2020-05-19 19:11:12	AddOrReplaceReadGroups	Processed    50,000,000 records.  Elapsed time: 00:09:39s.  Time for last 1,000,000:   10s.  Last read position: 12:72,550,287
+INFO	2020-05-19 19:11:24	AddOrReplaceReadGroups	Processed    51,000,000 records.  Elapsed time: 00:09:50s.  Time for last 1,000,000:   11s.  Last read position: 12:85,221,555
+INFO	2020-05-19 19:11:36	AddOrReplaceReadGroups	Processed    52,000,000 records.  Elapsed time: 00:10:03s.  Time for last 1,000,000:   12s.  Last read position: 12:105,640,395
+INFO	2020-05-19 19:11:47	AddOrReplaceReadGroups	Processed    53,000,000 records.  Elapsed time: 00:10:14s.  Time for last 1,000,000:   11s.  Last read position: 12:111,321,115
+INFO	2020-05-19 19:11:59	AddOrReplaceReadGroups	Processed    54,000,000 records.  Elapsed time: 00:10:25s.  Time for last 1,000,000:   11s.  Last read position: 13:12,421,088
+INFO	2020-05-19 19:12:10	AddOrReplaceReadGroups	Processed    55,000,000 records.  Elapsed time: 00:10:37s.  Time for last 1,000,000:   11s.  Last read position: 13:23,531,248
+INFO	2020-05-19 19:12:20	AddOrReplaceReadGroups	Processed    56,000,000 records.  Elapsed time: 00:10:47s.  Time for last 1,000,000:   10s.  Last read position: 13:23,622,374
+INFO	2020-05-19 19:12:30	AddOrReplaceReadGroups	Processed    57,000,000 records.  Elapsed time: 00:10:57s.  Time for last 1,000,000:   10s.  Last read position: 13:30,232,028
+INFO	2020-05-19 19:12:42	AddOrReplaceReadGroups	Processed    58,000,000 records.  Elapsed time: 00:11:09s.  Time for last 1,000,000:   11s.  Last read position: 13:51,947,938
+INFO	2020-05-19 19:12:54	AddOrReplaceReadGroups	Processed    59,000,000 records.  Elapsed time: 00:11:21s.  Time for last 1,000,000:   11s.  Last read position: 13:69,574,965
+INFO	2020-05-19 19:13:06	AddOrReplaceReadGroups	Processed    60,000,000 records.  Elapsed time: 00:11:33s.  Time for last 1,000,000:   12s.  Last read position: 13:96,592,542
+INFO	2020-05-19 19:13:18	AddOrReplaceReadGroups	Processed    61,000,000 records.  Elapsed time: 00:11:44s.  Time for last 1,000,000:   11s.  Last read position: 13:117,249,775
+INFO	2020-05-19 19:13:29	AddOrReplaceReadGroups	Processed    62,000,000 records.  Elapsed time: 00:11:56s.  Time for last 1,000,000:   11s.  Last read position: 14:29,217,924
+INFO	2020-05-19 19:13:41	AddOrReplaceReadGroups	Processed    63,000,000 records.  Elapsed time: 00:12:08s.  Time for last 1,000,000:   12s.  Last read position: 14:50,807,469
+INFO	2020-05-19 19:13:52	AddOrReplaceReadGroups	Processed    64,000,000 records.  Elapsed time: 00:12:19s.  Time for last 1,000,000:   10s.  Last read position: 14:55,638,231
+INFO	2020-05-19 19:14:03	AddOrReplaceReadGroups	Processed    65,000,000 records.  Elapsed time: 00:12:30s.  Time for last 1,000,000:   11s.  Last read position: 14:75,847,881
+INFO	2020-05-19 19:14:16	AddOrReplaceReadGroups	Processed    66,000,000 records.  Elapsed time: 00:12:42s.  Time for last 1,000,000:   12s.  Last read position: 14:118,051,638
+INFO	2020-05-19 19:14:27	AddOrReplaceReadGroups	Processed    67,000,000 records.  Elapsed time: 00:12:54s.  Time for last 1,000,000:   11s.  Last read position: 15:11,984,217
+INFO	2020-05-19 19:14:38	AddOrReplaceReadGroups	Processed    68,000,000 records.  Elapsed time: 00:13:05s.  Time for last 1,000,000:   11s.  Last read position: 15:37,984,525
+INFO	2020-05-19 19:14:50	AddOrReplaceReadGroups	Processed    69,000,000 records.  Elapsed time: 00:13:17s.  Time for last 1,000,000:   12s.  Last read position: 15:65,854,985
+INFO	2020-05-19 19:15:02	AddOrReplaceReadGroups	Processed    70,000,000 records.  Elapsed time: 00:13:29s.  Time for last 1,000,000:   11s.  Last read position: 15:76,904,340
+INFO	2020-05-19 19:15:14	AddOrReplaceReadGroups	Processed    71,000,000 records.  Elapsed time: 00:13:41s.  Time for last 1,000,000:   11s.  Last read position: 15:80,079,785
+INFO	2020-05-19 19:15:25	AddOrReplaceReadGroups	Processed    72,000,000 records.  Elapsed time: 00:13:52s.  Time for last 1,000,000:   11s.  Last read position: 15:83,576,401
+INFO	2020-05-19 19:15:36	AddOrReplaceReadGroups	Processed    73,000,000 records.  Elapsed time: 00:14:03s.  Time for last 1,000,000:   10s.  Last read position: 15:93,234,412
+INFO	2020-05-19 19:15:48	AddOrReplaceReadGroups	Processed    74,000,000 records.  Elapsed time: 00:14:14s.  Time for last 1,000,000:   11s.  Last read position: 15:98,039,842
+INFO	2020-05-19 19:15:59	AddOrReplaceReadGroups	Processed    75,000,000 records.  Elapsed time: 00:14:25s.  Time for last 1,000,000:   10s.  Last read position: 15:99,409,396
+INFO	2020-05-19 19:16:10	AddOrReplaceReadGroups	Processed    76,000,000 records.  Elapsed time: 00:14:37s.  Time for last 1,000,000:   11s.  Last read position: 16:4,045,529
+INFO	2020-05-19 19:16:22	AddOrReplaceReadGroups	Processed    77,000,000 records.  Elapsed time: 00:14:48s.  Time for last 1,000,000:   11s.  Last read position: 16:17,806,909
+INFO	2020-05-19 19:16:33	AddOrReplaceReadGroups	Processed    78,000,000 records.  Elapsed time: 00:15:00s.  Time for last 1,000,000:   11s.  Last read position: 16:31,457,630
+INFO	2020-05-19 19:16:45	AddOrReplaceReadGroups	Processed    79,000,000 records.  Elapsed time: 00:15:11s.  Time for last 1,000,000:   11s.  Last read position: 16:48,928,407
+INFO	2020-05-19 19:16:57	AddOrReplaceReadGroups	Processed    80,000,000 records.  Elapsed time: 00:15:23s.  Time for last 1,000,000:   11s.  Last read position: 16:87,484,014
+INFO	2020-05-19 19:17:08	AddOrReplaceReadGroups	Processed    81,000,000 records.  Elapsed time: 00:15:34s.  Time for last 1,000,000:   11s.  Last read position: 17:6,010,814
+INFO	2020-05-19 19:17:20	AddOrReplaceReadGroups	Processed    82,000,000 records.  Elapsed time: 00:15:46s.  Time for last 1,000,000:   11s.  Last read position: 17:21,587,845
+INFO	2020-05-19 19:17:31	AddOrReplaceReadGroups	Processed    83,000,000 records.  Elapsed time: 00:15:58s.  Time for last 1,000,000:   11s.  Last read position: 17:26,099,063
+INFO	2020-05-19 19:17:42	AddOrReplaceReadGroups	Processed    84,000,000 records.  Elapsed time: 00:16:09s.  Time for last 1,000,000:   11s.  Last read position: 17:32,774,212
+INFO	2020-05-19 19:17:54	AddOrReplaceReadGroups	Processed    85,000,000 records.  Elapsed time: 00:16:21s.  Time for last 1,000,000:   12s.  Last read position: 17:35,835,705
+INFO	2020-05-19 19:18:05	AddOrReplaceReadGroups	Processed    86,000,000 records.  Elapsed time: 00:16:32s.  Time for last 1,000,000:   10s.  Last read position: 17:39,843,725
+INFO	2020-05-19 19:18:16	AddOrReplaceReadGroups	Processed    87,000,000 records.  Elapsed time: 00:16:42s.  Time for last 1,000,000:   10s.  Last read position: 17:39,845,662
+INFO	2020-05-19 19:18:27	AddOrReplaceReadGroups	Processed    88,000,000 records.  Elapsed time: 00:16:54s.  Time for last 1,000,000:   11s.  Last read position: 17:45,568,062
+INFO	2020-05-19 19:18:38	AddOrReplaceReadGroups	Processed    89,000,000 records.  Elapsed time: 00:17:05s.  Time for last 1,000,000:   11s.  Last read position: 17:50,699,299
+INFO	2020-05-19 19:18:50	AddOrReplaceReadGroups	Processed    90,000,000 records.  Elapsed time: 00:17:16s.  Time for last 1,000,000:   11s.  Last read position: 17:70,847,064
+INFO	2020-05-19 19:19:01	AddOrReplaceReadGroups	Processed    91,000,000 records.  Elapsed time: 00:17:28s.  Time for last 1,000,000:   11s.  Last read position: 17:94,815,264
+INFO	2020-05-19 19:19:13	AddOrReplaceReadGroups	Processed    92,000,000 records.  Elapsed time: 00:17:40s.  Time for last 1,000,000:   11s.  Last read position: 18:34,909,758
+INFO	2020-05-19 19:19:25	AddOrReplaceReadGroups	Processed    93,000,000 records.  Elapsed time: 00:17:51s.  Time for last 1,000,000:   11s.  Last read position: 18:59,158,719
+INFO	2020-05-19 19:19:36	AddOrReplaceReadGroups	Processed    94,000,000 records.  Elapsed time: 00:18:03s.  Time for last 1,000,000:   11s.  Last read position: 18:77,779,892
+INFO	2020-05-19 19:19:47	AddOrReplaceReadGroups	Processed    95,000,000 records.  Elapsed time: 00:18:14s.  Time for last 1,000,000:   11s.  Last read position: 19:5,492,685
+INFO	2020-05-19 19:19:59	AddOrReplaceReadGroups	Processed    96,000,000 records.  Elapsed time: 00:18:26s.  Time for last 1,000,000:   11s.  Last read position: 19:8,925,818
+INFO	2020-05-19 19:20:11	AddOrReplaceReadGroups	Processed    97,000,000 records.  Elapsed time: 00:18:37s.  Time for last 1,000,000:   11s.  Last read position: 19:24,122,076
+INFO	2020-05-19 19:20:22	AddOrReplaceReadGroups	Processed    98,000,000 records.  Elapsed time: 00:18:49s.  Time for last 1,000,000:   11s.  Last read position: 19:40,911,047
+INFO	2020-05-19 19:20:34	AddOrReplaceReadGroups	Processed    99,000,000 records.  Elapsed time: 00:19:00s.  Time for last 1,000,000:   11s.  Last read position: 19:45,558,756
+INFO	2020-05-19 19:20:45	AddOrReplaceReadGroups	Processed   100,000,000 records.  Elapsed time: 00:19:12s.  Time for last 1,000,000:   11s.  Last read position: 2:4,994,646
+INFO	2020-05-19 19:20:55	AddOrReplaceReadGroups	Processed   101,000,000 records.  Elapsed time: 00:19:22s.  Time for last 1,000,000:   10s.  Last read position: 2:7,076,306
+INFO	2020-05-19 19:21:07	AddOrReplaceReadGroups	Processed   102,000,000 records.  Elapsed time: 00:19:34s.  Time for last 1,000,000:   11s.  Last read position: 2:25,362,806
+INFO	2020-05-19 19:21:18	AddOrReplaceReadGroups	Processed   103,000,000 records.  Elapsed time: 00:19:45s.  Time for last 1,000,000:   11s.  Last read position: 2:29,991,226
+INFO	2020-05-19 19:21:30	AddOrReplaceReadGroups	Processed   104,000,000 records.  Elapsed time: 00:19:57s.  Time for last 1,000,000:   12s.  Last read position: 2:34,774,281
+INFO	2020-05-19 19:21:42	AddOrReplaceReadGroups	Processed   105,000,000 records.  Elapsed time: 00:20:09s.  Time for last 1,000,000:   11s.  Last read position: 2:59,308,115
+INFO	2020-05-19 19:21:54	AddOrReplaceReadGroups	Processed   106,000,000 records.  Elapsed time: 00:20:20s.  Time for last 1,000,000:   11s.  Last read position: 2:79,639,841
+INFO	2020-05-19 19:22:06	AddOrReplaceReadGroups	Processed   107,000,000 records.  Elapsed time: 00:20:32s.  Time for last 1,000,000:   12s.  Last read position: 2:92,459,650
+INFO	2020-05-19 19:22:17	AddOrReplaceReadGroups	Processed   108,000,000 records.  Elapsed time: 00:20:44s.  Time for last 1,000,000:   11s.  Last read position: 2:116,052,128
+INFO	2020-05-19 19:22:29	AddOrReplaceReadGroups	Processed   109,000,000 records.  Elapsed time: 00:20:56s.  Time for last 1,000,000:   11s.  Last read position: 2:127,226,423
+INFO	2020-05-19 19:22:41	AddOrReplaceReadGroups	Processed   110,000,000 records.  Elapsed time: 00:21:08s.  Time for last 1,000,000:   11s.  Last read position: 2:145,121,634
+INFO	2020-05-19 19:22:52	AddOrReplaceReadGroups	Processed   111,000,000 records.  Elapsed time: 00:21:19s.  Time for last 1,000,000:   11s.  Last read position: 2:156,206,166
+INFO	2020-05-19 19:23:05	AddOrReplaceReadGroups	Processed   112,000,000 records.  Elapsed time: 00:21:31s.  Time for last 1,000,000:   12s.  Last read position: 2:167,650,571
+INFO	2020-05-19 19:23:16	AddOrReplaceReadGroups	Processed   113,000,000 records.  Elapsed time: 00:21:43s.  Time for last 1,000,000:   11s.  Last read position: 2:181,378,754
+INFO	2020-05-19 19:23:27	AddOrReplaceReadGroups	Processed   114,000,000 records.  Elapsed time: 00:21:54s.  Time for last 1,000,000:   11s.  Last read position: 3:33,812,226
+INFO	2020-05-19 19:23:39	AddOrReplaceReadGroups	Processed   115,000,000 records.  Elapsed time: 00:22:06s.  Time for last 1,000,000:   11s.  Last read position: 3:60,490,000
+INFO	2020-05-19 19:23:51	AddOrReplaceReadGroups	Processed   116,000,000 records.  Elapsed time: 00:22:17s.  Time for last 1,000,000:   11s.  Last read position: 3:82,614,334
+INFO	2020-05-19 19:24:02	AddOrReplaceReadGroups	Processed   117,000,000 records.  Elapsed time: 00:22:29s.  Time for last 1,000,000:   11s.  Last read position: 3:88,640,301
+INFO	2020-05-19 19:24:14	AddOrReplaceReadGroups	Processed   118,000,000 records.  Elapsed time: 00:22:40s.  Time for last 1,000,000:   11s.  Last read position: 3:95,119,182
+INFO	2020-05-19 19:24:24	AddOrReplaceReadGroups	Processed   119,000,000 records.  Elapsed time: 00:22:51s.  Time for last 1,000,000:   10s.  Last read position: 3:96,245,804
+INFO	2020-05-19 19:24:35	AddOrReplaceReadGroups	Processed   120,000,000 records.  Elapsed time: 00:23:02s.  Time for last 1,000,000:   10s.  Last read position: 3:100,149,875
+INFO	2020-05-19 19:24:47	AddOrReplaceReadGroups	Processed   121,000,000 records.  Elapsed time: 00:23:14s.  Time for last 1,000,000:   11s.  Last read position: 3:108,337,802
+INFO	2020-05-19 19:24:58	AddOrReplaceReadGroups	Processed   122,000,000 records.  Elapsed time: 00:23:25s.  Time for last 1,000,000:   11s.  Last read position: 3:135,463,970
+INFO	2020-05-19 19:25:11	AddOrReplaceReadGroups	Processed   123,000,000 records.  Elapsed time: 00:23:37s.  Time for last 1,000,000:   12s.  Last read position: 4:3,834,607
+INFO	2020-05-19 19:25:22	AddOrReplaceReadGroups	Processed   124,000,000 records.  Elapsed time: 00:23:49s.  Time for last 1,000,000:   11s.  Last read position: 4:40,965,198
+INFO	2020-05-19 19:25:33	AddOrReplaceReadGroups	Processed   125,000,000 records.  Elapsed time: 00:23:59s.  Time for last 1,000,000:   10s.  Last read position: 4:45,316,841
+INFO	2020-05-19 19:25:44	AddOrReplaceReadGroups	Processed   126,000,000 records.  Elapsed time: 00:24:11s.  Time for last 1,000,000:   11s.  Last read position: 4:58,841,438
+INFO	2020-05-19 19:25:55	AddOrReplaceReadGroups	Processed   127,000,000 records.  Elapsed time: 00:24:22s.  Time for last 1,000,000:   11s.  Last read position: 4:80,844,856
+INFO	2020-05-19 19:26:06	AddOrReplaceReadGroups	Processed   128,000,000 records.  Elapsed time: 00:24:33s.  Time for last 1,000,000:   11s.  Last read position: 4:91,852,515
+INFO	2020-05-19 19:26:19	AddOrReplaceReadGroups	Processed   129,000,000 records.  Elapsed time: 00:24:45s.  Time for last 1,000,000:   12s.  Last read position: 4:116,221,908
+INFO	2020-05-19 19:26:30	AddOrReplaceReadGroups	Processed   130,000,000 records.  Elapsed time: 00:24:56s.  Time for last 1,000,000:   11s.  Last read position: 4:123,410,031
+INFO	2020-05-19 19:26:42	AddOrReplaceReadGroups	Processed   131,000,000 records.  Elapsed time: 00:25:08s.  Time for last 1,000,000:   11s.  Last read position: 4:132,835,287
+INFO	2020-05-19 19:26:53	AddOrReplaceReadGroups	Processed   132,000,000 records.  Elapsed time: 00:25:20s.  Time for last 1,000,000:   11s.  Last read position: 4:140,961,419
+INFO	2020-05-19 19:27:05	AddOrReplaceReadGroups	Processed   133,000,000 records.  Elapsed time: 00:25:32s.  Time for last 1,000,000:   11s.  Last read position: 4:150,245,121
+INFO	2020-05-19 19:27:17	AddOrReplaceReadGroups	Processed   134,000,000 records.  Elapsed time: 00:25:43s.  Time for last 1,000,000:   11s.  Last read position: 4:155,887,623
+INFO	2020-05-19 19:27:27	AddOrReplaceReadGroups	Processed   135,000,000 records.  Elapsed time: 00:25:54s.  Time for last 1,000,000:   10s.  Last read position: 5:24,406,764
+INFO	2020-05-19 19:27:39	AddOrReplaceReadGroups	Processed   136,000,000 records.  Elapsed time: 00:26:05s.  Time for last 1,000,000:   11s.  Last read position: 5:34,352,151
+INFO	2020-05-19 19:27:50	AddOrReplaceReadGroups	Processed   137,000,000 records.  Elapsed time: 00:26:17s.  Time for last 1,000,000:   11s.  Last read position: 5:65,663,906
+INFO	2020-05-19 19:28:02	AddOrReplaceReadGroups	Processed   138,000,000 records.  Elapsed time: 00:26:28s.  Time for last 1,000,000:   11s.  Last read position: 5:100,744,833
+INFO	2020-05-19 19:28:13	AddOrReplaceReadGroups	Processed   139,000,000 records.  Elapsed time: 00:26:40s.  Time for last 1,000,000:   11s.  Last read position: 5:115,562,432
+INFO	2020-05-19 19:28:25	AddOrReplaceReadGroups	Processed   140,000,000 records.  Elapsed time: 00:26:52s.  Time for last 1,000,000:   11s.  Last read position: 5:122,802,215
+INFO	2020-05-19 19:28:35	AddOrReplaceReadGroups	Processed   141,000,000 records.  Elapsed time: 00:27:02s.  Time for last 1,000,000:   10s.  Last read position: 5:129,022,926
+INFO	2020-05-19 19:28:48	AddOrReplaceReadGroups	Processed   142,000,000 records.  Elapsed time: 00:27:14s.  Time for last 1,000,000:   12s.  Last read position: 5:137,634,205
+INFO	2020-05-19 19:28:59	AddOrReplaceReadGroups	Processed   143,000,000 records.  Elapsed time: 00:27:25s.  Time for last 1,000,000:   11s.  Last read position: 5:142,904,727
+INFO	2020-05-19 19:29:10	AddOrReplaceReadGroups	Processed   144,000,000 records.  Elapsed time: 00:27:37s.  Time for last 1,000,000:   11s.  Last read position: 5:149,048,644
+INFO	2020-05-19 19:29:22	AddOrReplaceReadGroups	Processed   145,000,000 records.  Elapsed time: 00:27:48s.  Time for last 1,000,000:   11s.  Last read position: 6:17,573,330
+INFO	2020-05-19 19:29:33	AddOrReplaceReadGroups	Processed   146,000,000 records.  Elapsed time: 00:28:00s.  Time for last 1,000,000:   11s.  Last read position: 6:34,775,071
+INFO	2020-05-19 19:29:45	AddOrReplaceReadGroups	Processed   147,000,000 records.  Elapsed time: 00:28:11s.  Time for last 1,000,000:   11s.  Last read position: 6:49,047,395
+INFO	2020-05-19 19:29:56	AddOrReplaceReadGroups	Processed   148,000,000 records.  Elapsed time: 00:28:23s.  Time for last 1,000,000:   11s.  Last read position: 6:56,832,397
+INFO	2020-05-19 19:30:06	AddOrReplaceReadGroups	Processed   149,000,000 records.  Elapsed time: 00:28:33s.  Time for last 1,000,000:   10s.  Last read position: 6:69,516,436
+INFO	2020-05-19 19:30:18	AddOrReplaceReadGroups	Processed   150,000,000 records.  Elapsed time: 00:28:44s.  Time for last 1,000,000:   11s.  Last read position: 6:83,771,297
+INFO	2020-05-19 19:30:29	AddOrReplaceReadGroups	Processed   151,000,000 records.  Elapsed time: 00:28:56s.  Time for last 1,000,000:   11s.  Last read position: 6:88,507,178
+INFO	2020-05-19 19:30:41	AddOrReplaceReadGroups	Processed   152,000,000 records.  Elapsed time: 00:29:07s.  Time for last 1,000,000:   11s.  Last read position: 6:108,473,466
+INFO	2020-05-19 19:30:52	AddOrReplaceReadGroups	Processed   153,000,000 records.  Elapsed time: 00:29:19s.  Time for last 1,000,000:   11s.  Last read position: 6:118,649,810
+INFO	2020-05-19 19:31:04	AddOrReplaceReadGroups	Processed   154,000,000 records.  Elapsed time: 00:29:31s.  Time for last 1,000,000:   11s.  Last read position: 6:125,162,059
+INFO	2020-05-19 19:31:15	AddOrReplaceReadGroups	Processed   155,000,000 records.  Elapsed time: 00:29:42s.  Time for last 1,000,000:   11s.  Last read position: 6:136,489,043
+INFO	2020-05-19 19:31:27	AddOrReplaceReadGroups	Processed   156,000,000 records.  Elapsed time: 00:29:54s.  Time for last 1,000,000:   11s.  Last read position: 7:4,459,176
+INFO	2020-05-19 19:31:39	AddOrReplaceReadGroups	Processed   157,000,000 records.  Elapsed time: 00:30:05s.  Time for last 1,000,000:   11s.  Last read position: 7:19,258,429
+INFO	2020-05-19 19:31:50	AddOrReplaceReadGroups	Processed   158,000,000 records.  Elapsed time: 00:30:17s.  Time for last 1,000,000:   11s.  Last read position: 7:28,826,017
+INFO	2020-05-19 19:32:02	AddOrReplaceReadGroups	Processed   159,000,000 records.  Elapsed time: 00:30:29s.  Time for last 1,000,000:   12s.  Last read position: 7:45,122,466
+INFO	2020-05-19 19:32:13	AddOrReplaceReadGroups	Processed   160,000,000 records.  Elapsed time: 00:30:40s.  Time for last 1,000,000:   10s.  Last read position: 7:45,459,551
+INFO	2020-05-19 19:32:24	AddOrReplaceReadGroups	Processed   161,000,000 records.  Elapsed time: 00:30:51s.  Time for last 1,000,000:   11s.  Last read position: 7:56,203,810
+INFO	2020-05-19 19:32:36	AddOrReplaceReadGroups	Processed   162,000,000 records.  Elapsed time: 00:31:03s.  Time for last 1,000,000:   12s.  Last read position: 7:88,490,707
+INFO	2020-05-19 19:32:48	AddOrReplaceReadGroups	Processed   163,000,000 records.  Elapsed time: 00:31:15s.  Time for last 1,000,000:   11s.  Last read position: 7:101,667,254
+INFO	2020-05-19 19:32:59	AddOrReplaceReadGroups	Processed   164,000,000 records.  Elapsed time: 00:31:26s.  Time for last 1,000,000:   11s.  Last read position: 7:113,255,716
+INFO	2020-05-19 19:33:11	AddOrReplaceReadGroups	Processed   165,000,000 records.  Elapsed time: 00:31:37s.  Time for last 1,000,000:   11s.  Last read position: 7:126,490,396
+INFO	2020-05-19 19:33:22	AddOrReplaceReadGroups	Processed   166,000,000 records.  Elapsed time: 00:31:49s.  Time for last 1,000,000:   11s.  Last read position: 7:132,712,692
+INFO	2020-05-19 19:33:34	AddOrReplaceReadGroups	Processed   167,000,000 records.  Elapsed time: 00:32:00s.  Time for last 1,000,000:   11s.  Last read position: 7:143,538,250
+INFO	2020-05-19 19:33:45	AddOrReplaceReadGroups	Processed   168,000,000 records.  Elapsed time: 00:32:12s.  Time for last 1,000,000:   11s.  Last read position: 8:20,410,724
+INFO	2020-05-19 19:33:57	AddOrReplaceReadGroups	Processed   169,000,000 records.  Elapsed time: 00:32:24s.  Time for last 1,000,000:   11s.  Last read position: 8:46,207,561
+INFO	2020-05-19 19:34:09	AddOrReplaceReadGroups	Processed   170,000,000 records.  Elapsed time: 00:32:36s.  Time for last 1,000,000:   11s.  Last read position: 8:70,895,923
+INFO	2020-05-19 19:34:20	AddOrReplaceReadGroups	Processed   171,000,000 records.  Elapsed time: 00:32:47s.  Time for last 1,000,000:   11s.  Last read position: 8:84,842,281
+INFO	2020-05-19 19:34:32	AddOrReplaceReadGroups	Processed   172,000,000 records.  Elapsed time: 00:32:59s.  Time for last 1,000,000:   11s.  Last read position: 8:95,326,117
+INFO	2020-05-19 19:34:44	AddOrReplaceReadGroups	Processed   173,000,000 records.  Elapsed time: 00:33:10s.  Time for last 1,000,000:   11s.  Last read position: 8:111,040,185
+INFO	2020-05-19 19:34:55	AddOrReplaceReadGroups	Processed   174,000,000 records.  Elapsed time: 00:33:22s.  Time for last 1,000,000:   11s.  Last read position: 8:123,206,250
+INFO	2020-05-19 19:35:06	AddOrReplaceReadGroups	Processed   175,000,000 records.  Elapsed time: 00:33:33s.  Time for last 1,000,000:   11s.  Last read position: 8:123,431,689
+INFO	2020-05-19 19:35:17	AddOrReplaceReadGroups	Processed   176,000,000 records.  Elapsed time: 00:33:44s.  Time for last 1,000,000:   11s.  Last read position: 9:7,183,152
+INFO	2020-05-19 19:35:29	AddOrReplaceReadGroups	Processed   177,000,000 records.  Elapsed time: 00:33:55s.  Time for last 1,000,000:   11s.  Last read position: 9:22,073,536
+INFO	2020-05-19 19:35:40	AddOrReplaceReadGroups	Processed   178,000,000 records.  Elapsed time: 00:34:07s.  Time for last 1,000,000:   11s.  Last read position: 9:40,802,865
+INFO	2020-05-19 19:35:51	AddOrReplaceReadGroups	Processed   179,000,000 records.  Elapsed time: 00:34:18s.  Time for last 1,000,000:   10s.  Last read position: 9:44,773,752
+INFO	2020-05-19 19:36:03	AddOrReplaceReadGroups	Processed   180,000,000 records.  Elapsed time: 00:34:29s.  Time for last 1,000,000:   11s.  Last read position: 9:57,750,857
+INFO	2020-05-19 19:36:14	AddOrReplaceReadGroups	Processed   181,000,000 records.  Elapsed time: 00:34:41s.  Time for last 1,000,000:   11s.  Last read position: 9:63,310,272
+INFO	2020-05-19 19:36:26	AddOrReplaceReadGroups	Processed   182,000,000 records.  Elapsed time: 00:34:53s.  Time for last 1,000,000:   11s.  Last read position: 9:71,846,536
+INFO	2020-05-19 19:36:37	AddOrReplaceReadGroups	Processed   183,000,000 records.  Elapsed time: 00:35:03s.  Time for last 1,000,000:   10s.  Last read position: 9:78,175,357
+INFO	2020-05-19 19:36:47	AddOrReplaceReadGroups	Processed   184,000,000 records.  Elapsed time: 00:35:13s.  Time for last 1,000,000:    9s.  Last read position: 9:78,175,476
+INFO	2020-05-19 19:36:57	AddOrReplaceReadGroups	Processed   185,000,000 records.  Elapsed time: 00:35:24s.  Time for last 1,000,000:   10s.  Last read position: 9:78,479,139
+INFO	2020-05-19 19:37:08	AddOrReplaceReadGroups	Processed   186,000,000 records.  Elapsed time: 00:35:35s.  Time for last 1,000,000:   11s.  Last read position: 9:79,755,480
+INFO	2020-05-19 19:37:19	AddOrReplaceReadGroups	Processed   187,000,000 records.  Elapsed time: 00:35:46s.  Time for last 1,000,000:   11s.  Last read position: 9:103,189,587
+INFO	2020-05-19 19:37:31	AddOrReplaceReadGroups	Processed   188,000,000 records.  Elapsed time: 00:35:58s.  Time for last 1,000,000:   11s.  Last read position: 9:108,797,639
+INFO	2020-05-19 19:37:43	AddOrReplaceReadGroups	Processed   189,000,000 records.  Elapsed time: 00:36:09s.  Time for last 1,000,000:   11s.  Last read position: 9:120,574,128
+INFO	2020-05-19 19:37:53	AddOrReplaceReadGroups	Processed   190,000,000 records.  Elapsed time: 00:36:20s.  Time for last 1,000,000:   10s.  Last read position: MT:1,423
+INFO	2020-05-19 19:38:03	AddOrReplaceReadGroups	Processed   191,000,000 records.  Elapsed time: 00:36:30s.  Time for last 1,000,000:   10s.  Last read position: MT:6,487
+INFO	2020-05-19 19:38:14	AddOrReplaceReadGroups	Processed   192,000,000 records.  Elapsed time: 00:36:40s.  Time for last 1,000,000:   10s.  Last read position: MT:14,963
+INFO	2020-05-19 19:38:25	AddOrReplaceReadGroups	Processed   193,000,000 records.  Elapsed time: 00:36:51s.  Time for last 1,000,000:   11s.  Last read position: X:37,082,587
+INFO	2020-05-19 19:38:36	AddOrReplaceReadGroups	Processed   194,000,000 records.  Elapsed time: 00:37:03s.  Time for last 1,000,000:   11s.  Last read position: X:74,303,929
+INFO	2020-05-19 19:38:48	AddOrReplaceReadGroups	Processed   195,000,000 records.  Elapsed time: 00:37:14s.  Time for last 1,000,000:   11s.  Last read position: X:103,959,170
+INFO	2020-05-19 19:38:59	AddOrReplaceReadGroups	Processed   196,000,000 records.  Elapsed time: 00:37:25s.  Time for last 1,000,000:   11s.  Last read position: X:142,343,138
+INFO	2020-05-19 19:39:10	AddOrReplaceReadGroups	Processed   197,000,000 records.  Elapsed time: 00:37:37s.  Time for last 1,000,000:   11s.  Last read position: Y:90,790,487
+[Tue May 19 19:39:13 EDT 2020] picard.sam.AddOrReplaceReadGroups done. Elapsed time: 37.67 minutes.
+Runtime.totalMemory()=536870912

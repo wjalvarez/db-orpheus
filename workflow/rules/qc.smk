@@ -1,6 +1,5 @@
 rule fastqc:
 	input:
-#		expand('{fastqs}/{sample}_{pair}.fq.gz', fastqs = config['fastqs'], sample = samples, pair = pairs)
 		config['fastqs'] + '/{sample}_{pair}.fq.gz' 
 	output:
 		html="outs/qc/{sample}_{pair}.html",

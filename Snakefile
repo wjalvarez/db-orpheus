@@ -4,6 +4,7 @@ configfile: "configB16.yaml"
 
 samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
 pairs = [1, 2]
+ID = config['ID']
 
 rule all:
 	input:
@@ -12,10 +13,13 @@ rule all:
 		expand('outs/STAR/{sample}_pass1/{sample}_Pass1SJ.filtered.tab', sample = samples),
 		expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam', sample = samples),
 		'outs/counts/Pipeline.Counts.tsv',
-		'outs/qc/multiqc_report.html'
+		'outs/qc/multiqc_report.html',
+		"outs/calls/all.filtered.vcf.gz"
 
 ### include rules ###
+include: 'workflow/rules/align.smk'
 include: 'workflow/rules/qc.smk'
+include: 'workflow/rules/call.smk'
 
 rule star_index:
 	input:
@@ -37,7 +41,6 @@ rule star_index:
 rule star_pass1:
 	input:
 		refdir = expand('{wd}/outs/STAR_index/{build}', wd = config['wd'], build = config['ref']['build'])
-#		refdir = expand('{wd}/outs/STAR_index/{build}', wd = config['wd'], build = config['ref']['build'])
 	params:
 		outdir = 'outs/STAR/{sample}_pass1',
 		rmbam = config['wd'] + '/' + 'outs/STAR/{sample}_pass1/Aligned.out.bam',
@@ -80,7 +83,7 @@ rule pass2:
 		ID_2 = '{sample}',
 		outdir_2 = config['wd'] + '/outs/STAR/bams'
 	output:
-		'outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam',
+		 aligned_bam = 'outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam'
 	threads: 4
 	shell:
 		'rm -rf {params.outdir} && '
@@ -96,17 +99,18 @@ rule pass2:
 		'mv Aligned.sortedByCoord.out.bam ../bams/{params.ID_2}.Aligned.sortedByCoord.out.bam && '
 		'cd {params.wd}'
 
-rule raw_counts:
-	input:
-		gtf = config['ref']['gtf'],
-		bams = expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam', sample = samples)
-	output:
-		'outs/counts/Pipeline.Counts.tsv'
-	threads: 
-		2
-	conda: 
-		'workflow/envs/raw_counts.yaml'
-	log: 
-		'logs/raw_counts.log'
-	script:
-		'workflow/scripts/create_counts.R'
+#rule raw_counts:
+#	input:
+#		gtf = config['ref']['gtf'],
+#		bams = expand('outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam')
+#	output:
+#		'outs/counts/Pipeline.Counts.tsv'
+#	threads: 
+#		2
+#	conda: 
+#		'workflow/envs/raw_counts.yaml'
+#	log: 
+#		'logs/raw_counts.log'
+#	script:
+#		'workflow/scripts/create_counts.R'
+
