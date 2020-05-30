@@ -2,33 +2,36 @@ rule star_index_new:
 	input:
 		fasta = config["ref"]["fa"],
 		gtf = config["ref"]["gtf"],
-	message:
-		"Testing STAR index"
 	threads:
 		12
 	params:
 		extra = "",
 		build = config["ref"]["build"],
-		analysis = config["Title"],
+		analysis = config["ID"]
 	output:
-		directory("outs/{}/{}".format(config["Title"], config["ref"]["build"])),
+		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
+	benchmark:
+		"benchmarks/align/00_star_index.txt"
 	log:
-		"logs/star_index_{input.build}}.log"
+		"logs/star_index_{}.log".format(config["ref"]["build"])
 	wrapper:
 		"0.59.1/bio/star/index"
 
 rule star_pe_multi:
 	input:
-		fq1 = ["reads/{sample}_R1.fq.gz"],
-		fq2 = ["reads/{sample}_R2.fq.gz"]
+		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
+		fq1 = [config["fastqs"] + "{sample}_1.fq.gz"],
+		fq2 = [config["fastqs"] + "{sample}_2.fq.gz"]
 	output:
-		"outs/star/pe/{sample}.Aligned.sortedByCoord.out.bam"
+		"outs/star/{sample}/Aligned.sortedByCoord.out.bam"
+	benchmark:
+		"benchmarks/align/01_star_align.{sample}.txt"
 	log:
-		"logs/star/pe/{sample}.log"
+		"logs/star/{sample}.log"
 	params:
-		index = "index",
-		extra = "--twopassMode Basic --readFilesCommand zcat --outSAMtype BAM SortedByCoordinate"
+		index = "outs/{}/{}".format(config["ID"], config["ref"]["build"]),
+		extra = "--twopassMode Basic --outSAMtype BAM SortedByCoordinate"
 	threads:
-		4
+		12
 	wrapper:
 		"0.59.1/bio/star/align"

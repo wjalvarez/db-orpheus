@@ -1,28 +1,28 @@
 rule replace_rg:
 	input:
-		'outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.bam'
+		'outs/star/{sample}/Aligned.sortedByCoord.out.bam'
 	output:
-<<<<<<< HEAD
-		"outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam"
-=======
-		temp("outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam")
->>>>>>> f8cb55e9100071b9c9a9c61f8c0401dc6086401e
+		temp("outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
+	benchmark:
+		"benchmarks/call/00_replace_rg.{sample}.txt"
 	log:
 		"logs/picard/replace_rg/{sample}.log"
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
 		"VALIDATION_STRINGENCY=LENIENT"
-	message:
-		"Including read group tag in BAM for recalibrating base quality score."
+#	message:
+#		"Including read group tag in BAM for recalibrating base quality score."
 	wrapper:
 		"0.57.0/bio/picard/addorreplacereadgroups"
 
 rule mark_duplicates:
 	input:
-		"outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.rgAligned.bam"
+		"outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam"
 	output:
-		bam = temp("outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.markedAligned.bam"),
-		metrics = "outs/STAR/bams/{sample}.metrics.txt"
+		bam = temp("outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam"),
+		metrics = "outs/star/{sample}/metrics.txt"
+	benchmark:
+		"benchmarks/call/01_mark_duplicates.{sample}.txt"
 	log:
 		"logs/picard/dedup/{sample}.log"
 	params:
@@ -32,18 +32,16 @@ rule mark_duplicates:
 
 rule split_n_cigar_reads:
 	input:
-		bam = "outs/STAR/bams/{sample}.Aligned.sortedByCoord.out.markedAligned.bam",
+		bam = "outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam",
 		ref = config['ref']['fa']
 	output:
 		temp("outs/split/{sample}.bam")
+	benchmark:
+		"benchmarks/call/02_split_n_cigar_reads.{sample}.txt"
 	log:
 		"logs/gatk/splitNCIGARreads/{sample}.log"
 	params:
-<<<<<<< HEAD
 		extra = "",
-=======
-		extra = "-rf ReassignOneMappingQuality -RMQF 255 -RMQT 60 -U ALLOW_N_CIGAR_READS",
->>>>>>> f8cb55e9100071b9c9a9c61f8c0401dc6086401e
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/splitncigarreads"
@@ -52,9 +50,11 @@ rule gatk_bqsr:
 	input:
 		bam = "outs/split/{sample}.bam",
 		ref = config['ref']['fa'],
-		known = "/data/exploratory/Users/jeff.alvarez/pipeline_ins/00-All.vcf.gz"
+		known = config["known_sites"]
 	output:
 		bam = temp("outs/recal/{sample}.bam")
+	benchmark:
+		"benchmarks/call/03_gatk_bqsr.{sample}.txt"
 	log:
 		"logs/gatk/bqsr/{sample}.log"
 	params:
@@ -69,16 +69,14 @@ rule haplotype_caller:
 		ref = config['ref']['fa']
 	output:
 		gvcf = temp("outs/calls/{sample}.g.vcf.gz")
+	benchmark:
+		"benchmarks/call/04_haplotype_caller.{sample}.txt"
 	log:
 		"logs/gatk/haplotypecaller/{sample}.log"
 	threads:
-		4
+		12
 	params:
-<<<<<<< HEAD
-		extra = "-L 19",
-=======
-		extra = "-L 19 -dontUseSoftClippedBases -stand_call_conf 20.0",
->>>>>>> f8cb55e9100071b9c9a9c61f8c0401dc6086401e
+		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 20.0",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/haplotypecaller"
@@ -88,7 +86,9 @@ rule combine_gvcfs:
 		gvcfs = expand("outs/calls/{sample}.g.vcf.gz", sample = samples),
 		ref = config['ref']['fa']
 	output:
-		gvcf = temp("outs/calls/all.g.vcf.gz")
+		gvcf = temp("outs/{}/calls/all.g.vcf.gz".format(config["ID"]))
+	benchmark:
+		"benchmarks/call/05_combine_gvcfs.txt"
 	log:
 		"logs/gatk/combinegvcfs.log"
 	params:
@@ -99,10 +99,12 @@ rule combine_gvcfs:
 
 rule genotype_gvcfs:
 	input:
-		gvcf = "outs/calls/all.g.vcf.gz",
+		gvcf = "outs/{}/calls/all.g.vcf.gz".format(config["ID"]),
 		ref = config['ref']['fa']
 	output:
-		vcf = "outs/calls/all.vcf.gz"
+		vcf = "outs/{}/calls/all.vcf.gz".format(config["ID"])
+	benchmark:
+		"benchmarks/call/06_genotype_gvcfs.txt"
 	log:
 		"logs/gatk/genotypegvcfs.log"
 	params:
@@ -110,15 +112,15 @@ rule genotype_gvcfs:
 		java_opts = "",
 	wrapper:
 		"0.58.0/bio/gatk/genotypegvcfs"
-<<<<<<< HEAD
-=======
 
 rule gatk_filter:
 	input:
-		vcf = "outs/calls/all.vcf.gz",
+		vcf = "outs/{}/calls/all.vcf.gz".format(config["ID"]),
 		ref = config["ref"]["fa"],
 	output:
-		vcf = "outs/calls/all.filtered.vcf.gz"
+		vcf = "outs/{}/calls/all.filtered.vcf.gz".format(config["ID"])
+	benchmark:
+		"benchmarks/call/07_gatk_filter.txt"
 	log:
 		"logs/gatk/filter/snvs.log"
 	params:
@@ -127,4 +129,3 @@ rule gatk_filter:
 		java_opts = "",
 	wrapper:
 		"0.59.1/bio/gatk/variantfiltration"
->>>>>>> f8cb55e9100071b9c9a9c61f8c0401dc6086401e
