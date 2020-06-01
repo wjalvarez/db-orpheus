@@ -16,7 +16,7 @@ rule all:
 
 ### include rules ###
 include: 'workflow/rules/align.smk'
-include: 'workflow/rules/qc.smk'
+#include: 'workflow/rules/qc.smk'
 include: 'workflow/rules/call.smk'
 
 #rule raw_counts:

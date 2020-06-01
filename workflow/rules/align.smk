@@ -31,6 +31,8 @@ rule star_pe_multi:
 	params:
 		index = "outs/{}/{}".format(config["ID"], config["ref"]["build"]),
 		extra = "--twopassMode Basic --outSAMtype BAM SortedByCoordinate"
+	output:
+		"outs/star/{sample}/Aligned.sortedByCoord.out.bam"
 	threads:
 		12
 	wrapper:
