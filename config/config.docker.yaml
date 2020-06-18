@@ -1,0 +1,11 @@
+ID: 2020_06_16_test
+Title: "2020-06-16 Docker Test"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+fastqs: /input/
+ref:
+        fa: /analysis/data/Human_B37.3_chr1.fasta
+        gtf: /analysis/data/Human_B37.3_chr1.gtf
+        build: Human_B37.3
+known_sites: /analysis/data/dbsnp_138.b37.chr_1.vcf.gz

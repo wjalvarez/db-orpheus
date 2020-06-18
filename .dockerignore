@@ -1,0 +1,10 @@
+.Snakefile.swp
+outs/*
+logs/*
+.snakemake
+Log.out
+logs/*
+.nfs*
+workflow/rules/.nfs*
+benchmarks/*
+workflow/rules/*.swp
