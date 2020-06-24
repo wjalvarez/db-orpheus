@@ -2,7 +2,15 @@
 This workflow performs variant calling and expression quantification with
 STAR, GATK, and RSEM.
 <h2>Usage</h2>
-<h3>Step 1: Install workflow</h3>
+<h3>Step 0: Install Snakemake</h3>
+<b>IMPORTANT</b>: Omics Pipeline was written with [Snakemake](https://snakemake.readthedocs.io/en/stable/),
+a Python-based workflow manager. The recommended way to install Snakemake is via
+Conda, which is not installed system-wide on HPC at the time of writing. Therefore,
+<b>the easiest way to start working with Omics Pipeline is to use the Docker method
+described in</b> [Step 3](#step-3-execute-workflow), 
+which comes installed with Snakemake and associated dependencies.
+
+<h3>Step 1: Get workflow</h3>
 [Clone](https://help.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository)
 the repo to the desired working directory for the concrete project/run on
 your machine:
@@ -44,12 +52,28 @@ The config file takes the following values:
 * <b>ref</b>: Reference data to be used in alignment and variant calling.
      - <b>fa</b>: Absolute path to fasta file (.fasta).
      - <b>gtf</b>: Absolute path to gene annotation file (.gtf).
-     - <b>build</b>: Absolute path to known variants file (.vcf.gz).
-* <b>trimming</b>: Logical to skip trimming step.
-* <b>known_sites</b>: Name of the analysis.
+     - <b>build</b>: Name of reference genome--output files will use this prefix.
+* <b>trimming</b>: Logical to skip trimming step [[to-do]].
+* <b>known_sites</b>: Absolute path to known variants file (.vcf.gz).
 
-<h2>Docker</h2>
-Docker can be run with the following code:
+<h3>Step 3: Execute workflow</h3>
+Test your configuration by performing a dry-run:
+
+```
+snakemake --use-conda -np
+```
+
+Execute the workflow locally using <code>$N</code> cores:
+
+```
+snakemake --use-conda --cluster --cores $N
+```
+
+<h4>Docker</h4>
+The workflow may also be deployed as a Docker image, where a conda environment
+is set up with Snakemake and dependencies installed. When run, the conda
+environment is activated then the Snakemake directory and input files are
+mounted as <code>analysis</code> and <code>input</code> respectively.
 
 ```
 docker run -it --rm \
