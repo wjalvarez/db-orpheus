@@ -57,23 +57,11 @@ The config file takes the following values:
 * <b>known_sites</b>: Absolute path to known variants file (.vcf.gz).
 
 <h3>Step 3: Execute workflow</h3>
-Test your configuration by performing a dry-run:
-
-```
-snakemake --use-conda -np
-```
-
-Execute the workflow locally using <code>$N</code> cores:
-
-```
-snakemake --use-conda --cluster --cores $N
-```
-
 <h4>Docker</h4>
 The workflow may also be deployed as a Docker image, where a conda environment
 is set up with Snakemake and dependencies installed. When run, the conda
 environment is activated then the Snakemake directory and input files are
-mounted as <code>analysis</code> and <code>input</code> respectively.
+mounted as <code>analysis</code> and <code>input</code> respectively:
 
 ```
 docker run -it --rm \
@@ -85,4 +73,17 @@ docker run -it --rm \
     --directory /analysis \
     --configfile /analysis/config/config.docker.yaml \
     -s /analysis/Snakefile"
+```
+
+<h4>Local</h4>
+Test your configuration by performing a dry-run:
+
+```
+snakemake --use-conda -np
+```
+
+Execute the workflow locally using <code>$N</code> cores:
+
+```
+snakemake --use-conda --cluster --cores $N
 ```
