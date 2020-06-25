@@ -24,16 +24,12 @@ The workflow can be configured with the config file located in the
 file used for the [Array Studio RNA-seq pipeline](https://git.agios.local/Mark.Fletcher/array_studio_RNAseq_pipeline):
 
 ```
-wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
 ID: 2020_04_30_test
 Title: "2020-04-30 Test"
 HPC_ID: jeff.alvarez
 Contact_name: "Jeff Alvarez"
 Organism: "Human"
-wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
 fastqs: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single/
-samples: samples.tsv
-units: units.tsv
 ref:
         fa: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.fasta
         gtf: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.gtf
