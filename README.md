@@ -59,9 +59,10 @@ is set up with Snakemake and dependencies installed. When run, the conda
 environment is activated then the Snakemake directory and input files are
 mounted as <code>analysis</code> and <code>input</code> respectively:
 
+    -u $(id -u):$(id -g) \
+
 ```
 docker run -it --rm \
-    -u $(id -u):$(id -g) \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline:/analysis \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single:/input \
     omics-pipeline:1.0 /bin/bash -c \
