@@ -63,15 +63,15 @@ mounted as <code>analysis</code> and <code>input</code> respectively:
 
 ```
 docker run -it --rm \
-    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline:/home/auser/analysis \
-    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single:/home/auser/input \
-    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data:/home/auser/ref \
+    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline:/home/user/analysis \
+    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single:/home/user/input \
+    -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data:/home/user/ref \
     omics-pipeline:1.0 /bin/bash -c \
     "conda run -n snakemake \
     snakemake -j 6 --keep-remote --use-conda \
-    --directory /home/auser/analysis \
-    --configfile /home/auser/analysis/config/config.docker.yaml \
-    -s /home/auser/analysis/Snakefile -np"
+    --directory /home/user/analysis \
+    --configfile /home/user/analysis/config/config.docker.yaml \
+    -s /home/user/analysis/Snakefile -np"
 ```
 
 <h4>Local</h4>
