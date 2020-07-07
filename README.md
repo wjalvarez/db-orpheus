@@ -61,6 +61,7 @@ mounted as <code>analysis</code> and <code>input</code> respectively:
 
 ```
 docker run -it --rm \
+    -u $(id -u):$(id -g) \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline:/analysis \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single:/input \
     omics-pipeline:1.0 /bin/bash -c \
@@ -68,7 +69,7 @@ docker run -it --rm \
     snakemake -j 6 --keep-remote --use-conda \
     --directory /analysis \
     --configfile /analysis/config/config.docker.yaml \
-    -s /analysis/Snakefile"
+    -s /analysis/Snakefile -np"
 ```
 
 <h4>Local</h4>
