@@ -10,8 +10,6 @@ rule replace_rg:
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
 		"VALIDATION_STRINGENCY=LENIENT"
-#	message:
-#		"Including read group tag in BAM for recalibrating base quality score."
 	wrapper:
 		"0.57.0/bio/picard/addorreplacereadgroups"
 
@@ -26,7 +24,7 @@ rule mark_duplicates:
 	log:
 		"logs/picard/dedup/{sample}.log"
 	params:
-		"REMOVE_DUPLICATES=true"
+		""
 	wrapper:
 		"0.57.0/bio/picard/markduplicates"
 
