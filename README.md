@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <h1>Omics Pipeline</h1>
 This workflow performs variant calling and expression quantification with
 STAR, GATK, and RSEM.
@@ -66,12 +67,22 @@ docker run -it --rm \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single:/home/user/input \
     -v /data/exploratory/Users/jeff.alvarez/omics-pipeline/data:/home/user/ref \
     omics-pipeline:1.0 /bin/bash -c \
+=======
+```
+docker run -it --rm \
+    --user "$(id -u):$(id -g)" \
+    -v /data/exploratory/Users/jeff.alvarez/orpheus:/home/user/analysis \
+    -v /data/exploratory/Users/jeff.alvarez/orpheus/data/samples/single:/home/user/input \
+    -v /data/exploratory/Users/jeff.alvarez/orpheus/data:/home/user/ref \
+    orpheus:0.0 /bin/bash -c \
+>>>>>>> 329fe457d074b1428c8dfebf49235752f48bfa61
     "conda run -n snakemake \
     snakemake -j 6 --keep-remote --use-conda \
     --directory /home/user/analysis \
     --configfile /home/user/analysis/config/config.docker.yaml \
     -s /home/user/analysis/Snakefile -np"
 ```
+<<<<<<< HEAD
 
 <h4>Local</h4>
 Test your configuration by performing a dry-run:
@@ -85,3 +96,5 @@ Execute the workflow locally using <code>$N</code> cores:
 ```
 snakemake --use-conda --cluster --cores $N
 ```
+=======
+>>>>>>> 329fe457d074b1428c8dfebf49235752f48bfa61
