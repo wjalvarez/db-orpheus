@@ -4,10 +4,10 @@ import pandas as pd
 configfile: "config/config.databricks.yaml"
 
 #samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
-samples, = config["bam"].rsplit(".",1)[0].rsplit("/",1)[1]
+sample = config["bam"].rsplit(".",1)[0].rsplit("/",1)[1]
 pairs = [1, 2]
 ID = config['ID']
-print(samples)
+print(sample)
 
 rule all:
 	input:
