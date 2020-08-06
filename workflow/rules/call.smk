@@ -75,14 +75,14 @@ rule haplotype_caller:
 	threads:
 		12
 	params:
-		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 20.0",
+		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 10.0 --base-quality-score-threshold 10",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/haplotypecaller"
 
 rule combine_gvcfs:
 	input:
-		gvcfs = expand("outs/calls/{sample}.g.vcf.gz", sample = samples),
+		gvcfs = expand("outs/calls/{sample}.g.vcf.gz", sample = sample),
 		ref = config['ref']['fa']
 	output:
 		gvcf = temp("outs/{}/calls/all.g.vcf.gz".format(config["ID"]))
