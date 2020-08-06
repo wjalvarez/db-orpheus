@@ -4,7 +4,7 @@ HPC_ID: jeff.alvarez
 Contact_name: "Jeff Alvarez"
 Organism: "Human"
 fastqs: /databricks/orpheus/data/samples
-bam: /databricks/orpheus/outs/star/untreated/Aligned.sortedByCoord.out.bam 
+bam: /databricks/orpheus/data/human_sample.bam 
 ref:
         fa: /databricks/orpheus/data/Human_B37.3_chr1.fasta
         gtf: /databricks/orpheus/data/Human_B37.3_chr1.gtf
