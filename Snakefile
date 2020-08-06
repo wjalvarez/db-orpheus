@@ -1,7 +1,7 @@
 import glob, os
 import pandas as pd
 
-configfile: "config/config.docker.yaml"
+configfile: "config/config.databricks.yaml"
 
 samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
 pairs = [1, 2]
@@ -16,7 +16,7 @@ rule all:
 
 
 ### include rules ###
-include: 'workflow/rules/align.smk'
+#include: 'workflow/rules/align.smk'
 #include: 'workflow/rules/qc.smk'
 include: 'workflow/rules/call.smk'
 

@@ -9,7 +9,18 @@ FROM databricksruntime/standard:latest
 #RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 
 ## Set working directory
-WORKDIR /home/user/
+WORKDIR /databricks/
+
+## Install git
+RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
+ /databricks/conda/bin/conda install -y -c conda-forge mamba && \
+/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
+
+## Pull git
+RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/orpheus.git
+
+## Set working directory
+WORKDIR /databricks/orpheus/
 
 ## Give user writing permissions
 #RUN chown $USER_ID:$GROUP_ID /opt/conda/pkgs/urls.txt
@@ -20,8 +31,8 @@ RUN export PATH=/databricks/conda/bin:$PATH
 #RUN /databricks/conda/envs/dcs-minimal/bin/pip install mamba
 
 ## Set up conda environment for Snakemake with Python 3.7.3
-RUN /databricks/conda/bin/conda install -y -c conda-forge mamba && \
-/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
+#RUN /databricks/conda/bin/conda install -y -c conda-forge mamba && \
+#/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
 
 ## Give conda privileges to user
 #RUN chown $USER_ID:$GROUP_ID /opt/conda/envs/snakemake/

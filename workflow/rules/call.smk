@@ -1,6 +1,7 @@
 rule replace_rg:
 	input:
-		'outs/star/{sample}/Aligned.sortedByCoord.out.bam'
+#		'outs/star/{sample}/Aligned.sortedByCoord.out.bam'
+		config["bam"]
 	output:
 		temp("outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
 	benchmark:
