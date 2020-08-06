@@ -3,15 +3,16 @@ import pandas as pd
 
 configfile: "config/config.databricks.yaml"
 
-samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
+#samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
+samples, = config["bam"].rsplit(".", 1)[0]
 pairs = [1, 2]
 ID = config['ID']
 print(samples)
 
 rule all:
 	input:
-		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
-		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
+#		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
+#		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
 		"outs/{}/calls/all.filtered.vcf.gz".format(config["ID"])
 
 

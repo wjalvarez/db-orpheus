@@ -22,6 +22,12 @@ RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/orpheus.git
 ## Set working directory
 WORKDIR /databricks/orpheus/
 
+## Change to databricks test
+RUN /databricks/conda/bin/git fetch
+
+## Change to databricks test
+RUN /databricks/conda/bin/git checkout databricks_test
+
 ## Give user writing permissions
 #RUN chown $USER_ID:$GROUP_ID /opt/conda/pkgs/urls.txt
 
