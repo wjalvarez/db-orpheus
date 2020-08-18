@@ -56,7 +56,7 @@ rule gatk_bqsr:
 	log:
 		"logs/gatk/bqsr/{sample}.log"
 	params:
-		extra = "",
+		extra = "-DF NotDuplicateReadFilter",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/baserecalibrator"
@@ -72,39 +72,24 @@ rule haplotype_caller:
 	log:
 		"logs/gatk/haplotypecaller/{sample}.log"
 	threads:
-		12
+		4
 	params:
-		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 20.0",
+		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 10.0 "
+			"-DF NotDuplicateReadFilter --base-quality-score-threshold 10.0",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/haplotypecaller"
 
-rule combine_gvcfs:
-	input:
-		gvcfs = expand("outs/calls/{sample}.g.vcf.gz", sample = samples),
-		ref = config['ref']['fa']
-	output:
-		gvcf = temp("outs/{}/calls/all.g.vcf.gz".format(config["ID"]))
-	benchmark:
-		"benchmarks/call/05_combine_gvcfs.txt"
-	log:
-		"logs/gatk/combinegvcfs.log"
-	params:
-		extra = "",
-		java_opts = ""
-	wrapper:
-		"0.58.0/bio/gatk/combinegvcfs"
-
 rule genotype_gvcfs:
 	input:
-		gvcf = "outs/{}/calls/all.g.vcf.gz".format(config["ID"]),
+		gvcf = "outs/calls/{sample}.vcf.gz",
 		ref = config['ref']['fa']
 	output:
-		vcf = "outs/{}/calls/all.vcf.gz".format(config["ID"])
+		vcf = temp("outs/calls/{sample}.unfiltered.vcf.gz")
 	benchmark:
-		"benchmarks/call/06_genotype_gvcfs.txt"
+		"benchmarks/call/06_genotype_gvcfs.{sample}.txt"
 	log:
-		"logs/gatk/genotypegvcfs.log"
+		"logs/gatk/genotype_gvcfs.{sample}.log"
 	params:
 		extra = "",
 		java_opts = "",
@@ -113,14 +98,14 @@ rule genotype_gvcfs:
 
 rule gatk_filter:
 	input:
-		vcf = "outs/{}/calls/all.vcf.gz".format(config["ID"]),
+		vcf = "outs/calls/{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"],
 	output:
-		vcf = "outs/{}/calls/all.filtered.vcf.gz".format(config["ID"])
+		vcf = "outs/calls/{sample}.vcf.gz"
 	benchmark:
-		"benchmarks/call/07_gatk_filter.txt"
+		"benchmarks/call/07_gatk_filter.{sample}.txt"
 	log:
-		"logs/gatk/filter/snvs.log"
+		"logs/gatk/filter/snvs.{sample}.log"
 	params:
 		filters = {"FS": "FS > 30.0", "QD": "QD < 2.0"},
 		extra = "-window 35 -cluster 3",
