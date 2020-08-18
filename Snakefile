@@ -1,22 +1,24 @@
 import glob, os
 import pandas as pd
 
-configfile: "config/config.docker.yaml"
+configfile: "config/config.databricks.yaml"
 
-samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
+#samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
+sample = config["bam"].rsplit(".",1)[0].rsplit("/",1)[1]
+
 pairs = [1, 2]
 ID = config['ID']
-print(samples)
+print(sample)
 
 rule all:
 	input:
-		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
-		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
-		"outs/{}/calls/all.filtered.vcf.gz".format(config["ID"])
+#		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
+#		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
+		"outs/calls/{sample}.vcf.gz"
 
 
 ### include rules ###
-include: 'workflow/rules/align.smk'
+#include: 'workflow/rules/align.smk'
 #include: 'workflow/rules/qc.smk'
 include: 'workflow/rules/call.smk'
 
