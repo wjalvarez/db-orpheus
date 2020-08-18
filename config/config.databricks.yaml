@@ -3,10 +3,10 @@ Title: "2020-08-18 Docker Test"
 HPC_ID: jeff.alvarez
 Contact_name: "Jeff Alvarez"
 Organism: "Human"
-fastqs: /databricks/orpheus/data/samples
-bam: /databricks/orpheus/data/human_sample.bam
+fastqs: /databricks/db-orpheus/data/samples
+bam: /databricks/db-orpheus/data/human_sample.bam
 ref:
-        fa: /databricks/orpheus/ref/Human_B37.3_chr1.fasta
-        gtf: /databricks/orpheus/ref/Human_B37.3_chr1.gtf
+        fa: /databricks/db-orpheus/ref/Human_B37.3_chr1.fasta
+        gtf: /databricks/db-orpheus/ref/Human_B37.3_chr1.gtf
         build: Human_B37.3
-known_sites: /databricks/orpheus/ref/dbsnp_138.b37.chr_1.vcf.gz
+known_sites: /databricks/db-orpheus/ref/dbsnp_138.b37.chr_1.vcf.gz
