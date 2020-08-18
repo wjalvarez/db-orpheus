@@ -17,16 +17,16 @@ RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
 /databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
 
 ## Pull git
-RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/orpheus.git
+RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/db-orpheus.git
 
 ## Set working directory
 WORKDIR /databricks/orpheus/
 
 ## Change to databricks test
-RUN /databricks/conda/bin/git fetch
+#RUN /databricks/conda/bin/git fetch
 
 ## Change to databricks test
-RUN /databricks/conda/bin/git checkout databricks_test
+#RUN /databricks/conda/bin/git checkout databricks_test
 
 ## Give user writing permissions
 #RUN chown $USER_ID:$GROUP_ID /opt/conda/pkgs/urls.txt
