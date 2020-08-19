@@ -9,7 +9,7 @@ FROM databricksruntime/standard:latest
 #RUN adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user
 
 ## Set working directory
-WORKDIR /databricks/
+WORKDIR /dbfs/
 
 ## Install git
 RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
@@ -20,7 +20,7 @@ RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
 RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/db-orpheus.git
 
 ## Set working directory
-WORKDIR /databricks/db-orpheus/
+WORKDIR /dbfs/db-orpheus/
 
 ## Change to databricks test
 #RUN /databricks/conda/bin/git fetch

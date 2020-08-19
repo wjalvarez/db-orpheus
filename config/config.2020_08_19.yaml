@@ -1,0 +1,12 @@
+ID: 2020_08_19_single
+Title: "2020-08-19 Single CCLE"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+fastqs: /databricks/db-orpheus/data/samples
+bam: /databricks/db-orpheus/data/human_sample.bam
+ref:
+        fa: /dbfs/references/Homo_sapiens.GRCh37.dna.primary_assembly.fa
+        gtf: /dbfs/db-orpheus/data/Human_B37.3_chr1.gtf
+        build: Human_B37.3
+        known_sites: /dbfs/references/dbsnp_138.b37.vcf.gz
