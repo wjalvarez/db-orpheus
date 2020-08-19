@@ -1,6 +1,7 @@
 rule replace_rg:
 	input:
-		'outs/star/{sample}/Aligned.sortedByCoord.out.bam'
+#		'outs/star/{sample}/Aligned.sortedByCoord.out.bam',
+		config["bam"]
 	output:
 		temp("outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
 	benchmark:
@@ -66,7 +67,7 @@ rule haplotype_caller:
 		bam = "outs/recal/{sample}.bam",
 		ref = config['ref']['fa']
 	output:
-		gvcf = temp("outs/calls/{sample}.g.vcf.gz")
+		gvcf = temp("outs/gvcfs/{sample}.g.vcf.gz")
 	benchmark:
 		"benchmarks/call/04_haplotype_caller.{sample}.txt"
 	log:
@@ -82,10 +83,10 @@ rule haplotype_caller:
 
 rule genotype_gvcfs:
 	input:
-		gvcf = "outs/calls/{sample}.vcf.gz",
+		gvcf = "outs/gvcfs/{sample}.g.vcf.gz",
 		ref = config['ref']['fa']
 	output:
-		vcf = temp("outs/calls/{sample}.unfiltered.vcf.gz")
+		vcf = temp("outs/unfiltered/{sample}.unfiltered.vcf.gz")
 	benchmark:
 		"benchmarks/call/06_genotype_gvcfs.{sample}.txt"
 	log:
@@ -98,7 +99,7 @@ rule genotype_gvcfs:
 
 rule gatk_filter:
 	input:
-		vcf = "outs/calls/{sample}.unfiltered.vcf.gz",
+		vcf = "outs/unfiltered/{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"],
 	output:
 		vcf = "outs/calls/{sample}.vcf.gz"

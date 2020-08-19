@@ -6,7 +6,7 @@ Organism: "Human"
 fastqs: /databricks/db-orpheus/data/samples
 bam: /databricks/db-orpheus/data/human_sample.bam
 ref:
-        fa: /databricks/db-orpheus/ref/Human_B37.3_chr1.fasta
-        gtf: /databricks/db-orpheus/ref/Human_B37.3_chr1.gtf
+        fa: /databricks/db-orpheus/data/Human_B37.3_chr1.fasta
+        gtf: /databricks/db-orpheus/data/Human_B37.3_chr1.gtf
         build: Human_B37.3
-known_sites: /databricks/db-orpheus/ref/dbsnp_138.b37.chr_1.vcf.gz
+known_sites: /databricks/db-orpheus/data/dbsnp_138.b37.chr_1.vcf.gz

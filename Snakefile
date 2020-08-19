@@ -5,6 +5,7 @@ configfile: "config/config.databricks.yaml"
 
 #samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
 sample = config["bam"].rsplit(".",1)[0].rsplit("/",1)[1]
+#samples, = glob_wildcards(config['bam'])
 
 pairs = [1, 2]
 ID = config['ID']
@@ -14,7 +15,7 @@ rule all:
 	input:
 #		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
 #		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
-		"outs/calls/{sample}.vcf.gz"
+		"outs/calls/{}.vcf.gz".format(sample)
 
 
 ### include rules ###

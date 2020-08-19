@@ -1,0 +1,12 @@
+ID: 2020_08_18_test
+Title: "2020-08-18 Docker Test"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+fastqs: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/samples
+bam: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/human_sample.bam
+ref:
+        fa: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.fasta
+        gtf: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.gtf
+        build: Human_B37.3
+known_sites: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/dbsnp_138.b37.chr_1.vcf.gz
