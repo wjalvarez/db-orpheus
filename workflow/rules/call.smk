@@ -49,7 +49,7 @@ rule gatk_bqsr:
 	input:
 		bam = "outs/split/{sample}.bam",
 		ref = config['ref']['fa'],
-		known = config["known_sites"]
+		known = config["ref"]["known_sites"]
 	output:
 		bam = temp("outs/recal/{sample}.bam")
 	benchmark:
