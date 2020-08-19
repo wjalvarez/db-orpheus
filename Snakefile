@@ -13,10 +13,8 @@ print(sample)
 
 rule all:
 	input:
-#		directory("outs/{}/{}".format(config["ID"], config["ref"]["build"])),
-#		expand('outs/star/{sample}/Aligned.sortedByCoord.out.bam', sample = samples),
-		"outs/calls/{}.vcf.gz".format(sample)
-
+#		"outs/calls/{}.vcf.gz".format(sample)
+		"/dbfs/db-orpheus/{}.vcf.gz".format(sample)
 
 ### include rules ###
 #include: 'workflow/rules/align.smk'
