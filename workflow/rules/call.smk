@@ -76,7 +76,7 @@ rule haplotype_caller:
 		4
 	params:
 		extra = "--dont-use-soft-clipped-bases true -stand-call-conf 10.0 "
-			"-DF NotDuplicateReadFilter --base-quality-score-threshold 10.0",
+			"-DF NotDuplicateReadFilter --base-quality-score-threshold 10",
 		java_opts = ""
 	wrapper:
 		"0.57.0/bio/gatk/haplotypecaller"
