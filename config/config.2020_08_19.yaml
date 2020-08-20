@@ -6,7 +6,7 @@ Organism: "Human"
 fastqs: /databricks/db-orpheus/data/samples
 bam: /databricks/db-orpheus/data/human_sample.bam
 ref:
-        fa: /dbfs/references/Homo_sapiens.GRCh37.dna.primary_assembly.fa
-        gtf: /dbfs/db-orpheus/data/Human_B37.3_chr1.gtf
+        fa: /dbfs/references/Homo_sapiens_assembly19.fasta
+        gtf: /databricks/db-orpheus/data/Human_B37.3_chr1.gtf
         build: Human_B37.3
         known_sites: /dbfs/references/dbsnp_138.b37.vcf.gz
