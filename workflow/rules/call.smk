@@ -3,8 +3,8 @@ rule replace_rg:
 #		'outs/star/{sample}/Aligned.sortedByCoord.out.bam',
 		config["bam"]
 	output:
-#		temp("outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
-		temp("/dbfs/db-orpheus/tmp/00_replace_rg/{sample}.rgAligned.bam")
+		temp("outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
+#		temp("/dbfs/db-orpheus/tmp/00_replace_rg/{sample}.rgAligned.bam")
 	benchmark:
 		"benchmarks/call/00_replace_rg.{sample}.txt"
 	log:
@@ -17,11 +17,11 @@ rule replace_rg:
 
 rule mark_duplicates:
 	input:
-		#"outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam"
-		"/dbfs/db-orpheus/tmp/00_replace_rg/{sample}.rgAligned.bam"
+		"outs/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam"
+		#"/dbfs/db-orpheus/tmp/00_replace_rg/{sample}.rgAligned.bam"
 	output:
-		#bam = temp("outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam"),
-		bam = "/dbfs/db-orpheus/tmp/01_mark_duplicates/{sample}.markDup.bam",
+		bam = temp("outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam"),
+		#bam = temp("/dbfs/db-orpheus/tmp/01_mark_duplicates/{sample}.markDup.bam"),
 		metrics = "outs/star/{sample}/metrics.txt"
 	benchmark:
 		"benchmarks/call/01_mark_duplicates.{sample}.txt"
@@ -35,12 +35,12 @@ rule mark_duplicates:
 
 rule split_n_cigar_reads:
 	input:
-		#bam = "outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam",
-		bam = "/dbfs/db-orpheus/tmp/01_mark_duplicates/{sample}.markDup.bam",
+		bam = "outs/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam",
+		#bam = "/dbfs/db-orpheus/tmp/01_mark_duplicates/{sample}.markDup.bam",
 		ref = config['ref']['fa']
 	output:
-		#temp("outs/split/{sample}.bam")
-		temp("/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam")
+		temp("outs/split/{sample}.bam")
+		#temp("/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam")
 	benchmark:
 		"benchmarks/call/02_split_n_cigar_reads.{sample}.txt"
 	log:
@@ -54,13 +54,13 @@ rule split_n_cigar_reads:
 
 rule gatk_bqsr:
 	input:
-#		bam = "outs/split/{sample}.bam",
-		bam = "/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam",
+		bam = "outs/split/{sample}.bam",
+#		bam = "/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam",
 		ref = config['ref']['fa'],
 		known = config["ref"]["known_sites"]
 	output:
-		#bam = temp("outs/recal/{sample}.bam")
-		bam = temp("/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam")
+		bam = temp("outs/recal/{sample}.bam")
+		#bam = temp("/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam")
 	benchmark:
 		"benchmarks/call/03_gatk_bqsr.{sample}.txt"
 	log:
@@ -74,12 +74,12 @@ rule gatk_bqsr:
 
 rule haplotype_caller:
 	input:
-		#bam = "outs/recal/{sample}.bam",
-		bam = "/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam",
+		bam = "outs/recal/{sample}.bam",
+		#bam = "/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam",
 		ref = config['ref']['fa']
 	output:
-#		gvcf = temp("outs/gvcfs/{sample}.g.vcf.gz")
-		gvcf = temp("/dbfs/db-orpheus/tmp/04_haplotype_caller/{sample}.g.vcf.gz")
+		gvcf = temp("outs/gvcfs/{sample}.g.vcf.gz")
+#		gvcf = temp("/dbfs/db-orpheus/tmp/04_haplotype_caller/{sample}.g.vcf.gz")
 	benchmark:
 		"benchmarks/call/04_haplotype_caller.{sample}.txt"
 	log:
@@ -96,12 +96,12 @@ rule haplotype_caller:
 
 rule genotype_gvcfs:
 	input:
-#		gvcf = "outs/gvcfs/{sample}.g.vcf.gz",
-		gvcf = "/dbfs/db-orpheus/tmp/04_haplotype_caller/{sample}.g.vcf.gz",
+		gvcf = "outs/gvcfs/{sample}.g.vcf.gz",
+#		gvcf = "/dbfs/db-orpheus/tmp/04_haplotype_caller/{sample}.g.vcf.gz",
 		ref = config['ref']['fa']
 	output:
-#		vcf = temp("outs/unfiltered/{sample}.unfiltered.vcf.gz")
-		vcf = temp("/dbfs/db-orpheus/tmp/05_genotype_gvcfs/{sample}.unfiltered.vcf.gz")
+		vcf = temp("outs/unfiltered/{sample}.unfiltered.vcf.gz")
+#		vcf = temp("/dbfs/db-orpheus/tmp/05_genotype_gvcfs/{sample}.unfiltered.vcf.gz")
 	benchmark:
 		"benchmarks/call/06_genotype_gvcfs.{sample}.txt"
 	log:
@@ -115,12 +115,12 @@ rule genotype_gvcfs:
 
 rule gatk_filter:
 	input:
-#		vcf = "outs/unfiltered/{sample}.unfiltered.vcf.gz",
-		vcf = "/dbfs/db-orpheus/tmp/05_genotype_gvcfs/{sample}.unfiltered.vcf.gz",
+		vcf = "outs/unfiltered/{sample}.unfiltered.vcf.gz",
+#		vcf = "/dbfs/db-orpheus/tmp/05_genotype_gvcfs/{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"],
 	output:
-#		vcf = "outs/calls/{sample}.vcf.gz"
-		vcf = "/dbfs/db-orpheus/{sample}.vcf.gz"
+		vcf = "outs/calls/{sample}.vcf.gz"
+#		vcf = "/dbfs/db-orpheus/{sample}.vcf.gz"
 	benchmark:
 		"benchmarks/call/07_gatk_filter.{sample}.txt"
 	log:
