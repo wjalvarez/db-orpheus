@@ -159,8 +159,8 @@ rule gatk_filter:
 #		vcf = "/dbfs/db-orpheus/tmp/05_genotype_gvcfs/{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"],
 	output:
-		vcf = "outs/calls/{sample}.vcf.gz"
-#		vcf = "/dbfs/db-orpheus/{sample}.vcf.gz"
+#		vcf = "outs/calls/{sample}.vcf.gz"
+		vcf = "/dbfs/db-orpheus/{sample}.vcf.gz"
 	benchmark:
 		"benchmarks/call/07_gatk_filter.{sample}.txt"
 	log:
