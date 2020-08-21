@@ -7,6 +7,7 @@ fastqs: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/samples
 bam: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/human_sample.bam
 ref:
         fa: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.fasta
+        dict: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.dict
         gtf: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.gtf
         build: Human_B37.3
-known_sites: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/dbsnp_138.b37.chr_1.vcf.gz
+        known_sites: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/dbsnp_138.b37.chr_1.vcf.gz
