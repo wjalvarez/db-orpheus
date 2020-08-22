@@ -58,8 +58,8 @@ rule gatk_baserecalibrator:
 		bam = "outs/split/{sample}.bam",
 #		bam = "/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam",
 		ref = config['ref']['fa'],
-		dict = config["ref"]["dict"],
-		known = config["ref"]["known_sites"]
+		dict = config["ref"]["dict"]
+#		known = config["ref"]["known_sites"]
 	output:
 		recal_table = temp("outs/recal/{sample}.grp")
 		#bam = temp("/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam")
