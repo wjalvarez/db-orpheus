@@ -12,9 +12,9 @@ rule replace_rg:
 		"/dbfs/db-orpheus/logs/00_replace_rg/{sample}.log"
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
-		"VALIDATION_STRINGENCY=LENIENT"
+		"VALIDATION_STRINGENCY=SILENT"
 	wrapper:
-		"0.57.0/bio/picard/addorreplacereadgroups"
+		"0.64.0/bio/picard/addorreplacereadgroups"
 
 rule mark_duplicates:
 	input:
@@ -32,7 +32,7 @@ rule mark_duplicates:
 	params:
 		""
 	wrapper:
-		"0.57.0/bio/picard/markduplicates"
+		"0.64.0/bio/picard/markduplicates"
 
 rule split_n_cigar_reads:
 	input:
@@ -51,15 +51,15 @@ rule split_n_cigar_reads:
 		extra = "",
 		java_opts = ""
 	wrapper:
-		"0.57.0/bio/gatk/splitncigarreads"
+		"0.64.0/bio/gatk/splitncigarreads"
 
 rule gatk_baserecalibrator:
 	input:
 		bam = "outs/split/{sample}.bam",
 #		bam = "/dbfs/db-orpheus/tmp/02_split_n_cigar_reads/{sample}.split.bam",
 		ref = config['ref']['fa'],
-		dict = config["ref"]["dict"]
-#		known = config["ref"]["known_sites"]
+		dict = config["ref"]["dict"],
+		known = config["ref"]["known_sites"]
 	output:
 		recal_table = temp("outs/recal/{sample}.grp")
 		#bam = temp("/dbfs/db-orpheus/tmp/03_gatk_bqsr/{sample}.bqsr.bam")
@@ -87,7 +87,7 @@ rule gatk_applybqsr:
 #		"logs/gatk/bqsr/gatk_applybqsr.{sample}.log"
 		"/dbfs/db-orpheus/logs/04_gatk_bqsr/{sample}.log"
 	params:
-		extra = "-DF NotDuplicateReadFilter",
+		extra = "",
 		java_opts = ""
 	wrapper:
 		"0.64.0/bio/gatk/applybqsr"
@@ -132,7 +132,7 @@ rule haplotype_caller:
 			"-DF NotDuplicateReadFilter --base-quality-score-threshold 10",
 		java_opts = ""
 	wrapper:
-		"0.57.0/bio/gatk/haplotypecaller"
+		"0.64.0/bio/gatk/haplotypecaller"
 
 rule genotype_gvcfs:
 	input:
@@ -151,7 +151,7 @@ rule genotype_gvcfs:
 		extra = "",
 		java_opts = "",
 	wrapper:
-		"0.58.0/bio/gatk/genotypegvcfs"
+		"0.64.0/bio/gatk/genotypegvcfs"
 
 rule gatk_filter:
 	input:
@@ -171,4 +171,4 @@ rule gatk_filter:
 		extra = "-window 35 -cluster 3",
 		java_opts = "",
 	wrapper:
-		"0.59.1/bio/gatk/variantfiltration"
+		"0.64.0/bio/gatk/variantfiltration"
