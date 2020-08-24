@@ -10,4 +10,4 @@ ref:
         dict: /dbfs/references/Homo_sapiens_assembly19.dict
         gtf: /databricks/db-orpheus/data/Human_B37.3_chr1.gtf
         build: Human_B37.3
-        known_sites: /dbfs/references/dbsnp_138.b37.vcf.gz
+        known_sites: /dbfs/references/GCF_000001405.25.vcf.gz
