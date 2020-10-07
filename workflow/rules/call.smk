@@ -104,7 +104,7 @@ rule genotype_gvcfs:
 	output:
 		vcf = temp("outs/{ID}/unfiltered/{sample}.unfiltered.vcf.gz")
 	benchmark:
-		"benchmarks/call/06_genotype_gvcfs.{sample}.txt"
+		"benchmarks/{ID}/call/06_genotype_gvcfs.{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/06_genotype_gvcfs/{sample}.log"
 	params:
