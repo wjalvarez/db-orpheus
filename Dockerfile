@@ -12,15 +12,15 @@ FROM databricksruntime/standard:latest
 ## Set working directory
 WORKDIR /databricks/
 
+# Install Glow
+/databricks/conda/bin/conda install -y -c anaconda pip
+RUN pip install glow.py
+
 ## Install git
 RUN /databricks/conda/bin/conda update conda && \
 /databricks/conda/bin/conda install -y -c conda-forge git && \
 /databricks/conda/bin/conda install -y -c conda-forge mamba && \
-/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake && \
-/databricks/conda/bin/conda install -y -c anaconda pip
-
-# Install Glow
-RUN pip install glow.py
+/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
 
 ## Pull git
 RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/db-orpheus.git
