@@ -16,7 +16,11 @@ WORKDIR /databricks/
 RUN /databricks/conda/bin/conda update conda && \
 /databricks/conda/bin/conda install -y -c conda-forge git && \
 /databricks/conda/bin/conda install -y -c conda-forge mamba && \
-/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
+/databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake && \
+/databricks/conda/bin/conda install -y -c anaconda pip
+
+# Install Glow
+RUN pip install glow.py
 
 ## Pull git
 RUN /databricks/conda/bin/git clone https://github.com/wjalvarez/db-orpheus.git
@@ -47,9 +51,6 @@ RUN export PATH=/databricks/conda/bin:$PATH
 
 ## Set user
 #USER user
-
-# Install Glow
-RUN pip install glow.py
 
 # Make RUN commands use the new environment:
 SHELL ["/databricks/conda/bin/conda", "run", "-n", "snakemake", "/bin/bash", "-c"]
