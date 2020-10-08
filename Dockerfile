@@ -13,9 +13,7 @@ FROM databricksruntime/standard:latest
 WORKDIR /databricks/
 
 # Install Glow
-RUN /databricks/conda/bin/conda update conda && \
-/databricks/conda/bin/conda install -y -c anaconda pip
-RUN pip install glow.py
+RUN /databricks/conda/bin/conda update conda
 
 ## Install git
 RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
@@ -54,6 +52,8 @@ RUN export PATH=/databricks/conda/bin:$PATH
 
 # Make RUN commands use the new environment:
 SHELL ["/databricks/conda/bin/conda", "run", "-n", "snakemake", "/bin/bash", "-c"]
+
+RUN pip install glow.py
 
 #Set path
 SHELL ["export", "PATH=/databricks/conda/envs/snakemake/bin:$PATH"]
