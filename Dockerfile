@@ -1,5 +1,6 @@
 ## Use base image from Databricks
 FROM databricksruntime/standard:latest
+#FROM databricksruntime/standard:2019.06.14
 
 ## Set up arguments
 #ARG USER_ID
@@ -12,8 +13,9 @@ FROM databricksruntime/standard:latest
 WORKDIR /databricks/
 
 ## Install git
-RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
- /databricks/conda/bin/conda install -y -c conda-forge mamba && \
+RUN /databricks/conda/bin/conda update conda && \
+/databricks/conda/bin/conda install -y -c conda-forge git && \
+/databricks/conda/bin/conda install -y -c conda-forge mamba && \
 /databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
 
 ## Pull git
@@ -48,6 +50,13 @@ RUN export PATH=/databricks/conda/bin:$PATH
 
 # Make RUN commands use the new environment:
 SHELL ["/databricks/conda/bin/conda", "run", "-n", "snakemake", "/bin/bash", "-c"]
+
+# Install Glow
+SHELL ["pip", "install", "glow.py"]
+
+# Start Spark shell with the Glow maven package
+SHELL ["/databricks/spark/bin/pyspark", "--packages", "io.projectglow:glow-spark3_2.12:0.6.0",
+"--conf", "spark.hadoop.io.compression.codecs=io.projectglow.sql.util.BGZFCodec"]
 
 #Set path
 SHELL ["export", "PATH=/databricks/conda/envs/snakemake/bin:$PATH"]
