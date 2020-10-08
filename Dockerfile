@@ -13,12 +13,12 @@ FROM databricksruntime/standard:latest
 WORKDIR /databricks/
 
 # Install Glow
+RUN /databricks/conda/bin/conda update conda && \
 /databricks/conda/bin/conda install -y -c anaconda pip
 RUN pip install glow.py
 
 ## Install git
-RUN /databricks/conda/bin/conda update conda && \
-/databricks/conda/bin/conda install -y -c conda-forge git && \
+RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
 /databricks/conda/bin/conda install -y -c conda-forge mamba && \
 /databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
 
