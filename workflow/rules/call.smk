@@ -109,7 +109,7 @@ rule genotype_gvcfs:
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/06_genotype_gvcfs/{sample}.log"
 	params:
-		extra = "",
+		extra = "-stand-call-conf 0.0",
 		java_opts = "",
 	wrapper:
 		"0.64.0/bio/gatk/genotypegvcfs"
