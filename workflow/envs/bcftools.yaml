@@ -6,6 +6,5 @@ dependencies:
 - openjdk
 - python =3.7.3
 - zlib
-- snpeff
 - bcftools =1.11-0
 - tabix =0.2.6-0
