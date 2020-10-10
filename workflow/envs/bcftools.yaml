@@ -1,4 +1,5 @@
 channels:
+- anaconda
 - conda-forge
 - bioconda
 - defaults
@@ -6,5 +7,6 @@ dependencies:
 - openjdk
 - python =3.7.3
 - zlib
+- snpeff=5.0-0
 - bcftools =1.11-0
 - tabix =0.2.6-0

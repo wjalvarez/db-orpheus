@@ -6,7 +6,8 @@ rule replace_rg:
 	benchmark:
 		"benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
 	log:
-		"/dbfs/db-orpheus/logs/{ID}/call/00_replace_rg/{sample}.log"
+		"/dbfs/db-orpheus/logs/{ID}/00_replace_rg/{sample}.log"
+#		"logs/{ID}/call/00_replace_rg/{sample}.log"
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
 		"VALIDATION_STRINGENCY=SILENT"
@@ -92,7 +93,7 @@ rule haplotype_caller:
 		4
 	params:
 		extra = "--dont-use-soft-clipped-bases true -DF NotDuplicateReadFilter "
-			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 "
+			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 ",
 			"-L /dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		java_opts = ""
 	wrapper:
@@ -149,11 +150,15 @@ rule snpeff:
 		calls = temp("outs/{ID}/annotated/{sample}.vcf")
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{sample}.log"
+#		"logs/{ID}/08_snpeff_annotate/{sample}.log"
 	params:
 		extra = "-Xmx4g -no-downstream -no-intergenic -no-intron -no-upstream",
 		reference = "GRCh37.75"
-	wrapper:
-		"0.66.0-6-gf553d75/bio/snpeff/annotate"
+	conda:
+		"../envs/bcftools.yaml"
+	shell:
+		"snpEff -dataDir {input.db} {params.extra} {params.reference} "
+		"{input.calls} > {output.calls}"
 
 rule bcftools_annotate:
 	input:
@@ -162,6 +167,7 @@ rule bcftools_annotate:
 		header = "/dbfs/references/Alu.RepeatMasker.hg19.ID.txt"
 	output:
 		vcf = "/dbfs/db-orpheus/{ID}/{sample}.vcf.gz"
+#		vcf = "outs/{ID}/final/{sample}.vcf.gz"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/09_bcftools_annotate/{sample}.log"
 	params:

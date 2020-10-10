@@ -14,6 +14,7 @@ print(sample)
 rule all:
 	input:
 		"/dbfs/db-orpheus/{}/{}.vcf.gz".format(ID, sample)
+#		"outs/{}/final/{}.vcf.gz".format(ID, sample)
 
 ### include rules ###
 #include: 'workflow/rules/align.smk'
