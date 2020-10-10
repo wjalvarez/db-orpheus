@@ -93,7 +93,7 @@ rule haplotype_caller:
 	params:
 		extra = "--dont-use-soft-clipped-bases true -DF NotDuplicateReadFilter "
 			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 "
-			"-L /dbfs/references/Alu.filtered.bed",
+			"-L /dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		java_opts = ""
 	wrapper:
 		"0.64.0/bio/gatk/haplotypecaller"
@@ -119,7 +119,7 @@ rule gatk_filter:
 		vcf = "outs/{ID}/unfiltered/{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"],
 	output:
-		vcf = "/dbfs/db-orpheus/{ID}/{sample}.vcf.gz"
+		vcf = temp("outs/{ID}/filtered/{sample}.vcf.gz"),
 	benchmark:
 		"benchmarks/{ID}/call/07_gatk_filter.{sample}.txt"
 	log:
@@ -130,3 +130,44 @@ rule gatk_filter:
 		java_opts = "",
 	wrapper:
 		"0.64.0/bio/gatk/variantfiltration"
+
+rule snpeff_download:
+	output:
+		directory("outs/{ID}/snpeff_ref/{reference}")
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{reference}.log"
+	params:
+		reference = "GRCh37.75"
+	wrapper:
+		"0.66.0/bio/snpeff/download"
+
+rule snpeff:
+	input:
+		calls = "outs/{ID}/filtered/{sample}.vcf.gz",
+		db = "outs/{ID}/snpeff_ref/GRCh37.75"
+	output:
+		calls = temp("outs/{ID}/annotated/{sample}.vcf")
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{sample}.log"
+	params:
+		extra = "-Xmx4g -no-downstream -no-intergenic -no-intron -no-upstream",
+		reference = "GRCh37.75"
+	wrapper:
+		"0.66.0/bio/snpeff/annotate"
+
+rule bcftools_annotate:
+	input:
+		calls = "outs/{ID}/annotated/{sample}.vcf",
+		bed = "/dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
+		header = "/dbfs/references/Alu.RepeatMasker.hg19.ID.txt"
+	output:
+		vcf = "/dbfs/db-orpheus/{ID}/{sample}.vcf.gz"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/09_bcftools_annotate/{sample}.log"
+	params:
+		columns = "CHROM,FROM,TO,ALU_NAME,ALU_ID,STRAND"
+	conda:
+		"../envs/bcftools.yaml"
+	shell:
+		"bcftools annotate -a {input.bed} -h {input.header} -c {params.columns} {input.calls} | "
+		"bgzip -c > {output.vcf}"

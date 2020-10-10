@@ -1,17 +1,19 @@
-wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
-ID: 2020_04_30_test
-Title: "2020-04-30 Test"
+wd: /data/exploratory/Users/jeff.alvarez/db-orpheus
+ID: 2020_10_09_test
+Title: "2020-10-09 Test"
 HPC_ID: jeff.alvarez
 Contact_name: "Jeff Alvarez"
 Organism: "Human"
-wd: /data/exploratory/Users/jeff.alvarez/omics-pipeline
-fastqs: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/samples/single/
+wd: /data/exploratory/Users/jeff.alvarez/db-orpheus
+bam: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/human_sample.bam
+fastqs: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/samples/single/
 samples: samples.tsv
 units: units.tsv
 ref:
-        fa: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.fasta
-        gtf: /data/exploratory/Users/jeff.alvarez/omics-pipeline/data/Human_B37.3_chr1.gtf
+        fa: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.fasta
+        gtf: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.gtf
         build: Human_B37.3
+        known_sites: /data/exploratory/Users/jeff.alvarez/pipeline_ins/dbsnp_138.b37.chr_1.vcf.gz 
+        dict: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/Human_B37.3_chr1.gtf
 trimming:
         skip: false
-known_sites: /data/exploratory/Users/jeff.alvarez/pipeline_ins/dbsnp_138.b37.chr_1.vcf.gz 
