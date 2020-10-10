@@ -1,6 +1,0 @@
-# The following table is formatted as tab separated values. 
-#GeneName	GeneId	TranscriptId	BioType	variants_impact_MODIFIER	variants_effect_non_coding_transcript_exon_variant
-AP006222.1	ENSG00000241670	ENST00000424429	processed_pseudogene	2	2
-AP006222.1	ENSG00000241670	ENST00000450734	processed_pseudogene	2	2
-AP006222.2	ENSG00000228463	ENST00000442116	lincRNA	2	2
-AP006222.2	ENSG00000228463	ENST00000448958	lincRNA	2	2
