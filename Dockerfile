@@ -13,7 +13,7 @@ FROM databricksruntime/standard:latest
 WORKDIR /databricks/
 
 # Install Anaconda thenm update conda to fix conflicting packages issue
-RUN /databricks/conda/bin/conda install -y -c anaconda && \
+RUN /databricks/conda/bin/conda install -y -c anaconda anaconda && \
 RUN /databricks/conda/bin/conda update --all
 
 ## Install git to pull db-orpheus repo then install Snakemake to create conda environment
