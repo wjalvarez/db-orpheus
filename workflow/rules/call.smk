@@ -153,7 +153,7 @@ rule snpeff:
 		extra = "-Xmx4g -no-downstream -no-intergenic -no-intron -no-upstream",
 		reference = "GRCh37.75"
 	wrapper:
-		"0.66.0/bio/snpeff/annotate"
+		"0.66.0-6-gf553d75/bio/snpeff/annotate"
 
 rule bcftools_annotate:
 	input:
