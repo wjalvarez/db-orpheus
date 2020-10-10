@@ -93,7 +93,7 @@ rule haplotype_caller:
 		4
 	params:
 		extra = "--dont-use-soft-clipped-bases true -DF NotDuplicateReadFilter "
-			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 ",
+			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 "
 			"-L /dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		java_opts = ""
 	wrapper:
