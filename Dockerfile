@@ -12,10 +12,11 @@ FROM databricksruntime/standard:latest
 ## Set working directory
 WORKDIR /databricks/
 
-# Install Glow
-RUN /databricks/conda/bin/conda update conda
+# Install Anaconda thenm update conda to fix conflicting packages issue
+RUN /databricks/conda/bin/conda install -y -c anaconda && \
+/databricks/conda/bin/conda update --all
 
-## Install git
+## Install git to pull db-orpheus repo then install Snakemake to create conda environment
 RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
 /databricks/conda/bin/conda install -y -c conda-forge mamba && \
 /databricks/conda/bin/mamba create -y -c conda-forge -c bioconda -n snakemake snakemake
@@ -53,7 +54,7 @@ RUN export PATH=/databricks/conda/bin:$PATH
 # Make RUN commands use the new environment:
 SHELL ["/databricks/conda/bin/conda", "run", "-n", "snakemake", "/bin/bash", "-c"]
 
-RUN pip install glow.py
+#RUN pip install glow.py
 
 #Set path
 SHELL ["export", "PATH=/databricks/conda/envs/snakemake/bin:$PATH"]
