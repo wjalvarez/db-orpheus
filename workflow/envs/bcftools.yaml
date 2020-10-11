@@ -1,11 +1,10 @@
+update_dependencies: True
 channels:
 - anaconda
 - conda-forge
 - bioconda
 - defaults
 dependencies:
-- zlib ==1.2.11
-- openssl ==1.1.1h
 - snpeff ==5.0-0
 - bcftools ==1.11-0
 - tabix ==0.2.6-0
