@@ -132,20 +132,20 @@ rule gatk_filter:
 	wrapper:
 		"0.64.0/bio/gatk/variantfiltration"
 
-rule snpeff_download:
-	output:
-		directory("outs/{ID}/snpeff_ref/{reference}")
-	log:
-		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{reference}.log"
-	params:
-		reference = "GRCh37.75"
-	wrapper:
-		"0.66.0/bio/snpeff/download"
+#rule snpeff_download:
+#	output:
+#		directory("outs/{ID}/snpeff_ref/{reference}")
+#	log:
+#		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{reference}.log"
+#	params:
+#		reference = "GRCh37.75"
+#	wrapper:
+#		"0.66.0/bio/snpeff/download"
 
 rule snpeff:
 	input:
-		calls = "outs/{ID}/filtered/{sample}.vcf.gz",
-		db = "outs/{ID}/snpeff_ref/GRCh37.75"
+		calls = "outs/{ID}/filtered/{sample}.vcf.gz"
+#		db = "outs/{ID}/snpeff_ref/GRCh37.75"
 	output:
 		calls = temp("outs/{ID}/annotated/{sample}.vcf")
 	log:
@@ -157,7 +157,7 @@ rule snpeff:
 	conda:
 		"../envs/bcftools.yaml"
 	shell:
-		"snpEff -dataDir {input.db} {params.extra} {params.reference} "
+		"snpEff {params.extra} {params.reference} "
 		"{input.calls} > {output.calls}"
 
 rule bcftools_annotate:
