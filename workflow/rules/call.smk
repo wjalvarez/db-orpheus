@@ -165,6 +165,8 @@ rule bcftools_annotate:
 		calls = "outs/{ID}/annotated/{sample}.vcf",
 		bed = "/dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		header = "/dbfs/references/Alu.RepeatMasker.hg19.ID.txt"
+#		bed = "/data/exploratory/Users/jeff.alvarez/pipeline_ins/Alu.RepeatMasker.hg19.ID.bed",
+#		header = "/data/exploratory/Users/jeff.alvarez/pipeline_ins/Alu.RepeatMasker.hg19.ID.txt"
 	output:
 		vcf = "/dbfs/db-orpheus/{ID}/{sample}.vcf.gz"
 #		vcf = "outs/{ID}/final/{sample}.vcf.gz"

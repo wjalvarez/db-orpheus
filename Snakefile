@@ -1,7 +1,7 @@
 import glob, os
 import pandas as pd
 
-configfile: "config/config.CCLE_full.yaml"
+configfile: "config/config.local.yaml"
 
 #samples, = glob_wildcards(config['fastqs'] + '/' + '{sample}_1.fq.gz')
 sample = config["bam"].rsplit(".",1)[0].rsplit("/",1)[1]

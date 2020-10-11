@@ -4,9 +4,8 @@ channels:
 - bioconda
 - defaults
 dependencies:
-- openjdk
-- python =3.7.3
-- zlib
-- snpeff=5.0-0
+- zlib >=1.2.11
+- openssl >=1.1.1h
+- snpeff =5.0-0
 - bcftools =1.11-0
 - tabix =0.2.6-0
