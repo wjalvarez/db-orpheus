@@ -155,7 +155,7 @@ rule snpeff:
 		extra = "-Xmx4g -no-downstream -no-intergenic -no-intron -no-upstream",
 		reference = "GRCh37.75"
 	conda:
-		"../envs/bcftools.yaml"
+		"../envs/snpeff.yaml"
 	shell:
 		"snpEff {params.extra} {params.reference} "
 		"{input.calls} > {output.calls}"

@@ -3,5 +3,4 @@ channels:
 - bioconda
 - defaults
 dependencies:
-- bcftools ==1.11-0
-- tabix ==0.2.6-0
+- snpeff ==5.0-0
