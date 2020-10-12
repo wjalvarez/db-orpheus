@@ -41,7 +41,7 @@ rule split_n_cigar_reads:
 		"/dbfs/db-orpheus/logs/{ID}/02_split_n_cigar_reads/{sample}.log"
 	params:
 		extra = "--tmp-dir outs/{ID}/star/{sample}",
-		java_opts = "-Xmx4g"
+		java_opts = "-Xmx8g"
 	wrapper:
 		"0.64.0/bio/gatk/splitncigarreads"
 
@@ -59,7 +59,7 @@ rule gatk_baserecalibrator:
 		"/dbfs/db-orpheus/logs/{ID}/03_gatk_baserecalibrator/{sample}.log"
 	params:
 		extra = "-DF NotDuplicateReadFilter",
-		java_opts = "-Xmx4g"
+		java_opts = "-Xmx8g"
 	wrapper:
 		"0.64.0/bio/gatk/baserecalibrator"
 
@@ -75,7 +75,7 @@ rule gatk_applybqsr:
 		"/dbfs/db-orpheus/logs/{ID}/04_gatk_bqsr/{sample}.log"
 	params:
 		extra = "",
-		java_opts = "-Xmx4g"
+		java_opts = "-Xmx8g"
 	wrapper:
 		"0.64.0/bio/gatk/applybqsr"
 
@@ -95,7 +95,7 @@ rule haplotype_caller:
 		extra = "--dont-use-soft-clipped-bases true -DF NotDuplicateReadFilter "
 			"--minimum-mapping-quality 0 --base-quality-score-threshold 10 -mbq 13 "
 			"-L /dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
-		java_opts = ""
+		java_opts = "-Xmx8g"
 	wrapper:
 		"0.64.0/bio/gatk/haplotypecaller"
 
