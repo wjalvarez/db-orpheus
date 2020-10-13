@@ -10,7 +10,7 @@ rule replace_rg:
 #		"logs/{ID}/call/00_replace_rg/{sample}.log"
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
-		"VALIDATION_STRINGENCY=SILENT"
+		"VALIDATION_STRINGENCY=SILENT TMP_DIR=/dbfs/db-orpheus/tmp"
 	wrapper:
 		"0.57.0/bio/picard/addorreplacereadgroups"
 
@@ -144,7 +144,7 @@ rule gatk_filter:
 
 rule snpeff:
 	input:
-		calls = temp("/dbfs/db-orpheus/tmp/{ID}/filtered/{sample}.vcf.gz")
+		calls = "/dbfs/db-orpheus/tmp/{ID}/filtered/{sample}.vcf.gz"
 #		db = "outs/{ID}/snpeff_ref/GRCh37.75"
 	output:
 		calls = temp("/dbfs/db-orpheus/tmp/{ID}/annotated/{sample}.vcf")
