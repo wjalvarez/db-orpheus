@@ -5,12 +5,12 @@ rule replace_rg:
 		temp("/dbfs/db-orpheus/tmp/{ID}/replace_rg/{sample}.bam")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/00_replace_rg/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/00_replace_rg/{sample}.log"
 #		"logs/{ID}/call/00_replace_rg/{sample}.log"
 	params:
 		"RGID={sample} RGLB={sample} RGPL={sample} RGPU={sample} RGSM={sample} "
-		"VALIDATION_STRINGENCY=SILENT TMP_DIR=/dbfs/db-orpheus/tmp"
+		"VALIDATION_STRINGENCY=SILENT"
 	wrapper:
 		"0.57.0/bio/picard/addorreplacereadgroups"
 
@@ -22,8 +22,8 @@ rule mark_duplicates:
 		metrics = "/dbfs/db-orpheus/tmp/{ID}/mark_duplicates/{sample}.metrics.txt"
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/01_mark_duplicates/{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/01_mark_duplicates/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/01_mark_duplicates/{sample}.log"
 	params:
 		mem = "-Xmx8g"
 	wrapper:
@@ -37,8 +37,8 @@ rule split_n_cigar_reads:
 		temp("/dbfs/db-orpheus/tmp/{ID}/split/{sample}.bam")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/02_split_n_cigar_reads/{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/02_split_n_cigar_reads/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/02_split_n_cigar_reads/{sample}.log"
 	params:
 		extra = "--tmp-dir /dbfs/db-orpheus/tmp",
 		java_opts = "-Xmx8g"
@@ -55,8 +55,8 @@ rule gatk_baserecalibrator:
 		recal_table = temp("/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.grp")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/03_gatk_bqsr/{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/03_gatk_baserecalibrator/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/03_gatk_baserecalibrator/{sample}.log"
 	params:
 		extra = "-DF NotDuplicateReadFilter",
 		java_opts = "-Xmx8g"
@@ -71,8 +71,8 @@ rule gatk_applybqsr:
 		recal_table = "/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.grp"
 	output:
 		bam = temp("/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.bam")
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/04_gatk_bqsr/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/04_gatk_bqsr/{sample}.log"
 	params:
 		extra = "",
 		java_opts = "-Xmx8g"
@@ -87,8 +87,8 @@ rule haplotype_caller:
 		gvcf = temp("/dbfs/db-orpheus/tmp/{ID}/gvcfs/{sample}.g.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/05_haplotype_caller/{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/05_haplotype_caller/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/05_haplotype_caller/{sample}.log"
 	threads:
 		4
 	params:
@@ -107,8 +107,8 @@ rule genotype_gvcfs:
 		vcf = temp("/dbfs/db-orpheus/tmp/{ID}/unfiltered/{sample}.unfiltered.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/06_genotype_gvcfs.{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/06_genotype_gvcfs/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/06_genotype_gvcfs/{sample}.log"
 	params:
 		extra = "-stand-call-conf 0.0",
 		java_opts = "",
@@ -123,8 +123,8 @@ rule gatk_filter:
 		vcf = temp("/dbfs/db-orpheus/tmp/{ID}/filtered/{sample}.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/07_gatk_filter.{sample}.txt"
-#	log:
-#		"/dbfs/db-orpheus/logs/{ID}/07_gatk_filter/{sample}.log"
+	log:
+		"/dbfs/db-orpheus/logs/{ID}/07_gatk_filter/{sample}.log"
 	params:
 		filters = {"FS": "FS > 30.0", "QD": "QD < 2.0", "DP": "DP < 20"},
 		extra = "-window 35 -cluster 3",
