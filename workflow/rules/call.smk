@@ -2,9 +2,9 @@ rule replace_rg:
 	input:
 		config["bam"]
 	output:
-		temp("outs/{ID}/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam")
+		temp("/dbfs/db-orpheus/tmp/{ID}/replace_rg/{sample}.bam")
 	benchmark:
-		"benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/00_replace_rg/{sample}.log"
 #		"logs/{ID}/call/00_replace_rg/{sample}.log"
@@ -16,12 +16,12 @@ rule replace_rg:
 
 rule mark_duplicates:
 	input:
-		"outs/{ID}/star/{sample}/Aligned.sortedByCoord.out.rgAligned.bam"
+		"/dbfs/db-orpheus/tmp/{ID}/replace_rg/{sample}.bam"
 	output:
-		bam = temp("outs/{ID}/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam"),
-		metrics = "outs/{ID}/star/{sample}/metrics.txt"
+		bam = temp("/dbfs/db-orpheus/tmp/{ID}/mark_duplicates/{sample}.bam"),
+		metrics = "/dbfs/db-orpheus/tmp/{ID}/mark_duplicates/{sample}.metrics.txt"
 	benchmark:
-		"benchmarks/{ID}/call/01_mark_duplicates/{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/01_mark_duplicates/{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/01_mark_duplicates/{sample}.log"
 	params:
@@ -31,30 +31,30 @@ rule mark_duplicates:
 
 rule split_n_cigar_reads:
 	input:
-		bam = "outs/{ID}/star/{sample}/Aligned.sortedByCoord.out.markedAligned.bam",
+		bam = "/dbfs/db-orpheus/tmp/{ID}/mark_duplicates/{sample}.bam",
 		ref = config['ref']['fa']
 	output:
-		temp("outs/{ID}/split/{sample}.bam")
+		temp("/dbfs/db-orpheus/tmp/{ID}/split/{sample}.bam")
 	benchmark:
-		"benchmarks/{ID}/call/02_split_n_cigar_reads/{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/02_split_n_cigar_reads/{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/02_split_n_cigar_reads/{sample}.log"
 	params:
-		extra = "--tmp-dir outs/{ID}/star/{sample}",
+		extra = "--tmp-dir /dbfs/db-orpheus/tmp",
 		java_opts = "-Xmx8g"
 	wrapper:
 		"0.64.0/bio/gatk/splitncigarreads"
 
 rule gatk_baserecalibrator:
 	input:
-		bam = "outs/{ID}/split/{sample}.bam",
+		bam = "/dbfs/db-orpheus/tmp/{ID}/split/{sample}.bam",
 		ref = config['ref']['fa'],
 		dict = config["ref"]["dict"],
 		known = config["ref"]["known_sites"]
 	output:
-		recal_table = temp("outs/{ID}/recal/{sample}.grp")
+		recal_table = temp("/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.grp")
 	benchmark:
-		"benchmarks/{ID}/call/03_gatk_bqsr/{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/03_gatk_bqsr/{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/03_gatk_baserecalibrator/{sample}.log"
 	params:
@@ -65,12 +65,12 @@ rule gatk_baserecalibrator:
 
 rule gatk_applybqsr:
 	input:
-		bam = "outs/{ID}/split/{sample}.bam",
+		bam = "/dbfs/db-orpheus/tmp/{ID}/split/{sample}.bam",
 		ref = config['ref']['fa'],
 		dict = config["ref"]["dict"],
-		recal_table = "outs/{ID}/recal/{sample}.grp"
+		recal_table = "/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.grp"
 	output:
-		bam = temp("outs/{ID}/recal/{sample}.bam")
+		bam = temp("/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.bam")
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/04_gatk_bqsr/{sample}.log"
 	params:
@@ -81,12 +81,12 @@ rule gatk_applybqsr:
 
 rule haplotype_caller:
 	input:
-		bam = "outs/{ID}/recal/{sample}.bam",
+		bam = "/dbfs/db-orpheus/tmp/{ID}/recal/{sample}.bam",
 		ref = config['ref']['fa']
 	output:
-		gvcf = temp("outs/{ID}/gvcfs/{sample}.g.vcf.gz")
+		gvcf = temp("/dbfs/db-orpheus/tmp/{ID}/gvcfs/{sample}.g.vcf.gz")
 	benchmark:
-		"benchmarks/{ID}/call/05_haplotype_caller/{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/05_haplotype_caller/{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/05_haplotype_caller/{sample}.log"
 	threads:
@@ -101,12 +101,12 @@ rule haplotype_caller:
 
 rule genotype_gvcfs:
 	input:
-		gvcf = "outs/{ID}/gvcfs/{sample}.g.vcf.gz",
+		gvcf = "/dbfs/db-orpheus/tmp/{ID}/gvcfs/{sample}.g.vcf.gz",
 		ref = config['ref']['fa']
 	output:
-		vcf = temp("outs/{ID}/unfiltered/{sample}.unfiltered.vcf.gz")
+		vcf = temp("/dbfs/db-orpheus/tmp/{ID}/unfiltered/{sample}.unfiltered.vcf.gz")
 	benchmark:
-		"benchmarks/{ID}/call/06_genotype_gvcfs.{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/06_genotype_gvcfs.{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/06_genotype_gvcfs/{sample}.log"
 	params:
@@ -117,12 +117,12 @@ rule genotype_gvcfs:
 
 rule gatk_filter:
 	input:
-		vcf = "outs/{ID}/unfiltered/{sample}.unfiltered.vcf.gz",
-		ref = config["ref"]["fa"],
+		vcf = "/dbfs/db-orpheus/tmp/{ID}/unfiltered/{sample}.unfiltered.vcf.gz",
+		ref = config["ref"]["fa"]
 	output:
-		vcf = temp("outs/{ID}/filtered/{sample}.vcf.gz"),
+		vcf = temp("/dbfs/db-orpheus/tmp/{ID}/filtered/{sample}.vcf.gz")
 	benchmark:
-		"benchmarks/{ID}/call/07_gatk_filter.{sample}.txt"
+		"/dbfs/db-orpheus/benchmarks/{ID}/call/07_gatk_filter.{sample}.txt"
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/07_gatk_filter/{sample}.log"
 	params:
@@ -144,10 +144,10 @@ rule gatk_filter:
 
 rule snpeff:
 	input:
-		calls = "outs/{ID}/filtered/{sample}.vcf.gz"
+		calls = temp("/dbfs/db-orpheus/tmp/{ID}/filtered/{sample}.vcf.gz")
 #		db = "outs/{ID}/snpeff_ref/GRCh37.75"
 	output:
-		calls = temp("outs/{ID}/annotated/{sample}.vcf")
+		calls = temp("/dbfs/db-orpheus/tmp/{ID}/annotated/{sample}.vcf")
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{sample}.log"
 #		"logs/{ID}/08_snpeff_annotate/{sample}.log"
@@ -162,7 +162,7 @@ rule snpeff:
 
 rule bcftools_annotate:
 	input:
-		calls = "outs/{ID}/annotated/{sample}.vcf",
+		calls = "/dbfs/db-orpheus/tmp/{ID}/annotated/{sample}.vcf",
 		bed = "/dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		header = "/dbfs/references/Alu.RepeatMasker.hg19.ID.txt"
 #		bed = "/data/exploratory/Users/jeff.alvarez/pipeline_ins/Alu.RepeatMasker.hg19.ID.bed",
