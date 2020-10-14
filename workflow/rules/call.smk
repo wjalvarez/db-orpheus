@@ -2,7 +2,7 @@ rule replace_rg:
 	input:
 		config["bam"]
 	output:
-		temp("/db-orpheus/tmp-db-orpheus/{ID}.replace_rg.{sample}.bam")
+		temp("/dbfs/tmp-db-orpheus/{ID}.replace_rg.{sample}.bam")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
 	log:
