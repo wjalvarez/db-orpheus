@@ -2,7 +2,7 @@ rule replace_rg:
 	input:
 		config["bam"]
 	output:
-		temp("/tmp/{ID}/replace_rg/{sample}.bam")
+		temp("/db-orpheus/tmp-db-orpheus/{ID}.replace_rg.{sample}.bam")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/00_replace_rg/{sample}.txt"
 	log:
@@ -16,10 +16,10 @@ rule replace_rg:
 
 rule mark_duplicates:
 	input:
-		"/tmp/{ID}/replace_rg/{sample}.bam"
+		"/dbfs/tmp-db-orpheus/{ID}.replace_rg.{sample}.bam"
 	output:
-		bam = temp("/tmp/{ID}/mark_duplicates/{sample}.bam"),
-		metrics = "/tmp/{ID}/mark_duplicates/{sample}.metrics.txt"
+		bam = temp("/dbfs/tmp-db-orpheus/{ID}.mark_duplicates.{sample}.bam"),
+		metrics = "/dbfs/tmp-db-orpheus/{ID}.mark_duplicates.{sample}.metrics.txt"
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/01_mark_duplicates/{sample}.txt"
 	log:
@@ -31,10 +31,10 @@ rule mark_duplicates:
 
 rule split_n_cigar_reads:
 	input:
-		bam = "/tmp/{ID}/mark_duplicates/{sample}.bam",
+		bam = "/dbfs/tmp-db-orpheus/{ID}.mark_duplicates.{sample}.bam",
 		ref = config['ref']['fa']
 	output:
-		temp("/tmp/{ID}/split/{sample}.bam")
+		temp("/dbfs/tmp-db-orpheus/{ID}.split.{sample}.bam")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/02_split_n_cigar_reads/{sample}.txt"
 	log:
@@ -47,12 +47,12 @@ rule split_n_cigar_reads:
 
 rule gatk_baserecalibrator:
 	input:
-		bam = "/tmp/{ID}/split/{sample}.bam",
+		bam = "/dbfs/tmp-db-orpheus/{ID}.split.{sample}.bam",
 		ref = config['ref']['fa'],
 		dict = config["ref"]["dict"],
 		known = config["ref"]["known_sites"]
 	output:
-		recal_table = temp("/tmp/{ID}/recal/{sample}.grp")
+		recal_table = temp("/dbfs/tmp-db-orpheus/{ID}.recal.{sample}.grp")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/03_gatk_bqsr/{sample}.txt"
 	log:
@@ -65,12 +65,12 @@ rule gatk_baserecalibrator:
 
 rule gatk_applybqsr:
 	input:
-		bam = "/tmp/{ID}/split/{sample}.bam",
+		bam = "/dbfs/tmp-db-orpheus/{ID}.split.{sample}.bam",
 		ref = config['ref']['fa'],
 		dict = config["ref"]["dict"],
-		recal_table = "/tmp/{ID}/recal/{sample}.grp"
+		recal_table = "/dbfs/tmp-db-orpheus/{ID}.recal.{sample}.grp"
 	output:
-		bam = temp("/tmp/{ID}/recal/{sample}.bam")
+		bam = temp("/dbfs/tmp-db-orpheus/{ID}.recal.{sample}.bam")
 	log:
 		"/dbfs/db-orpheus/logs/{ID}/04_gatk_bqsr/{sample}.log"
 	params:
@@ -81,10 +81,10 @@ rule gatk_applybqsr:
 
 rule haplotype_caller:
 	input:
-		bam = "/tmp/{ID}/recal/{sample}.bam",
+		bam = "/dbfs/tmp-db-orpheus/{ID}.recal.{sample}.bam",
 		ref = config['ref']['fa']
 	output:
-		gvcf = temp("/tmp/{ID}/{sample}/gvcfs/{sample}.g.vcf.gz")
+		gvcf = temp("/dbfs/tmp-db-orpheus/{ID}.{sample}.g.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/05_haplotype_caller/{sample}.txt"
 	log:
@@ -101,10 +101,10 @@ rule haplotype_caller:
 
 rule genotype_gvcfs:
 	input:
-		gvcf = "/tmp/{ID}/{sample}/gvcfs/{sample}.g.vcf.gz",
+		gvcf = "/dbfs/tmp-db-orpheus/{ID}.{sample}.g.vcf.gz",
 		ref = config['ref']['fa']
 	output:
-		vcf = temp("/tmp/{ID}/{sample}/unfiltered/{sample}.unfiltered.vcf.gz")
+		vcf = temp("/dbfs/tmp-db-orpheus/{ID}.{sample}.unfiltered.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/06_genotype_gvcfs.{sample}.txt"
 	log:
@@ -117,10 +117,10 @@ rule genotype_gvcfs:
 
 rule gatk_filter:
 	input:
-		vcf = "/tmp/{ID}/{sample}/unfiltered/{sample}.unfiltered.vcf.gz",
+		vcf = "/dbfs/tmp-db-orpheus/{ID}.{sample}.unfiltered.vcf.gz",
 		ref = config["ref"]["fa"]
 	output:
-		vcf = temp("/tmp/{ID}/{sample}/filtered/{sample}.vcf.gz")
+		vcf = temp("/dbfs/tmp-db-orpheus/{ID}.{sample}.filtered.vcf.gz")
 #	benchmark:
 #		"/dbfs/db-orpheus/benchmarks/{ID}/call/07_gatk_filter.{sample}.txt"
 	log:
@@ -144,10 +144,10 @@ rule gatk_filter:
 
 rule snpeff:
 	input:
-		calls = "/tmp/{ID}/{sample}/filtered/{sample}.vcf.gz"
+		calls = "/dbfs/tmp-db-orpheus/{ID}.{sample}.filtered.vcf.gz"
 #		db = "outs/{ID}/snpeff_ref/GRCh37.75"
 	output:
-		calls = temp("/tmp/{ID}/annotated/{sample}.vcf")
+		calls = temp("/dbfs/tmp-db-orpheus/{ID}.annotated.{sample}.vcf")
 #	log:
 #		"/dbfs/db-orpheus/logs/{ID}/08_snpeff_annotate/{sample}.log"
 #		"logs/{ID}/08_snpeff_annotate/{sample}.log"
@@ -162,7 +162,7 @@ rule snpeff:
 
 rule bcftools_annotate:
 	input:
-		calls = "/tmp/{ID}/annotated/{sample}.vcf",
+		calls = "/dbfs/tmp-db-orpheus/{ID}.annotated.{sample}.vcf",
 		bed = "/dbfs/references/Alu.RepeatMasker.hg19.ID.bed",
 		header = "/dbfs/references/Alu.RepeatMasker.hg19.ID.txt"
 #		bed = "/data/exploratory/Users/jeff.alvarez/pipeline_ins/Alu.RepeatMasker.hg19.ID.bed",
