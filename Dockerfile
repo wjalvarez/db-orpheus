@@ -1,4 +1,3 @@
-## Use base image from Databricks
 FROM databricksruntime/standard:latest
 #FROM databricksruntime/standard:2019.06.14
 
@@ -13,8 +12,9 @@ FROM databricksruntime/standard:latest
 WORKDIR /databricks/
 
 
-# Install Anaconda thenm update conda to fix conflicting packages issue
-RUN /databricks/conda/bin/conda update conda
+### Install Anaconda thenm update conda to fix conflicting packages issue
+#RUN /databricks/conda/bin/conda update conda
+#RUN /databricks/conda/bin/conda clean -a -f -y
 
 ## Install git to pull db-orpheus repo then install Snakemake to create conda environment
 RUN /databricks/conda/bin/conda install -y -c conda-forge git && \
