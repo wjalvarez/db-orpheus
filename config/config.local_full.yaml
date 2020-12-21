@@ -1,0 +1,13 @@
+ID: 2020_12_18_test
+Title: "2020-12-18 Split HC"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+fastqs: /data/exploratory/Users/jeff.alvarez/db-orpheus/data/samples
+bam: /data/exploratory/Users/jeff.alvarez/orpheus/outs/2020_09_22_A549_ADAR/star/RNA1A/Aligned.sortedByCoord.out.bam
+ref:
+        fa: /data/exploratory/Users/jeff.alvarez/pipeline_ins/Omicsoft.Human.B37.3.fasta
+        dict: /data/exploratory/Users/jeff.alvarez/pipeline_ins/Omicsoft.Human.B37.3.dict
+        gtf: /data/exploratory/Users/jeff.alvarez/pipeline_ins/Omicsoft.Human.B37.3.OmicsoftGene20130723.gtf
+        build: Human_B37.3
+        known_sites: /data/exploratory/Users/jeff.alvarez/pipeline_ins/00-common_all.vcf.gz
