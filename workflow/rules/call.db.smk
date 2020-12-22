@@ -70,7 +70,7 @@ rule haplotype_caller:
 		bam = "/dbfs/tmp-db-orpheus/{ID}.{sample}.recal.bam",
 		ref = config['ref']['fa']
 	output:
-		gvcf = temp("/dbfs/tmp-db-orpheus/{ID}.{sample}.{chr_chunks}.g.vcf.gz")
+		gvcf = temp("/dbfs/tmp-HC/{ID}.{sample}.{chr_chunks}.g.vcf.gz")
 	benchmark:
 		"/dbfs/db-orpheus/benchmarks/{ID}/call/{sample}.{chr_chunks}.04_haplotype_caller.txt"
 	log:
@@ -88,7 +88,7 @@ rule haplotype_caller:
 
 rule combine_gvcfs:
 	input:
-		gvcfs = expand("/dbfs/tmp-db-orpheus/{ID}.{sample}.{chr_chunks}.g.vcf.gz", 
+		gvcfs = expand("/dbfs/tmp-HC/{ID}.{sample}.{chr_chunks}.g.vcf.gz", 
 			ID = ID, sample = sample, chr_chunks = chr_chunks),
 		ref = config['ref']['fa']
 	output:
