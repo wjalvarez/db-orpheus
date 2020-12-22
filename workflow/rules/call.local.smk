@@ -97,7 +97,8 @@ rule haplotype_caller:
 
 rule combine_gvcfs:
 	input:
-		gvcfs = expand("outs/{{ID}}/gvcfs/{{sample}}.{chr_chunks}.g.vcf.gz", chr_chunks = chr_chunks),
+		gvcfs = expand("outs/{ID}/gvcfs/{sample}.{chr_chunks}.g.vcf.gz", ID = ID, sample = sample,
+				chr_chunks = chr_chunks),
 		ref = config['ref']['fa']
 	output:
 		gvcf = temp("outs/{ID}/combine_gvcfs/{sample}.g.vcf.gz")

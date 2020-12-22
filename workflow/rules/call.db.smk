@@ -88,8 +88,8 @@ rule haplotype_caller:
 
 rule combine_gvcfs:
 	input:
-		gvcfs = expand("/dbfs/tmp-db-orpheus/{{ID}}.{{sample}}.{chr_chunks}.g.vcf.gz", 
-			chr_chunks = chr_chunks),
+		gvcfs = expand("/dbfs/tmp-db-orpheus/{ID}.{sample}.{chr_chunks}.g.vcf.gz", 
+			ID = ID, sample = sample, chr_chunks = chr_chunks),
 		ref = config['ref']['fa']
 	output:
 		gvcf = temp("/dbfs/tmp-db-orpheus/{ID}.{sample}.g.vcf.gz")

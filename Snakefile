@@ -25,3 +25,4 @@ rule all:
 #include: 'workflow/rules/align.smk'
 #include: 'workflow/rules/qc.smk'
 include: 'workflow/rules/call.db.smk'
+#include: 'workflow/rules/call.local.smk'
