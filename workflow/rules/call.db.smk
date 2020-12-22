@@ -31,7 +31,7 @@ rule split_n_cigar_reads:
 
 rule gatk_baserecalibrator:
 	input:
-		bam = "/dbfs/tmp-db-orpheus/{ID}.sample}.split.bam",
+		bam = "/dbfs/tmp-db-orpheus/{ID}.{sample}.split.bam",
 		ref = config['ref']['fa'],
 		dict = config["ref"]["dict"],
 		known = config["ref"]["known_sites"]
