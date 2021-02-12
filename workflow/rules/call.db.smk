@@ -171,5 +171,6 @@ rule bcftools_annotate:
 	conda:
 		"../envs/bcftools.yaml"
 	shell:
-		"bcftools annotate -a {input.bed} -h {input.header} -c {params.columns} {input.calls} | "
-		"bgzip -c > {output.vcf}"
+		"""bcftools annotate -a {input.bed} -h {input.header} -c {params.columns} {input.calls} | """
+		"""bcftools filter -i "REF == 'A' & ALT == 'G' | REF == 'T' & ALT == 'C'" | """
+		"""bcftools filter -e "FORMAT/AD[:1] < 5" | bgzip -c > {output.vcf}"""
