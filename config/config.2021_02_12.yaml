@@ -1,0 +1,13 @@
+ID: 2021_02_12_CCLE_chr11
+Title: "2021-02-12 CCLE chr11"
+HPC_ID: jeff.alvarez
+Contact_name: "Jeff Alvarez"
+Organism: "Human"
+fastqs: /databricks/db-orpheus/data/samples
+bam: /databricks/db-orpheus/data/human_sample.bam
+ref:
+        fa: /dbfs/references/Homo_sapiens_assembly19.fasta
+        dict: /dbfs/references/Homo_sapiens_assembly19.dict
+        gtf: /databricks/db-orpheus/data/Human_B37.3_chr1.gtf
+        build: Human_B37.3
+        known_sites: /dbfs/references/00-common_all.vcf.gz
